@@ -15,6 +15,7 @@ import Home from './routes/Home/Home';
 import Blog from './routes/Blog/Blog';
 import Aromaterapia from './routes/Aromaterapia/Aromaterapia';
 import SobreNos from './routes/SobreNos/SobreNos';
+import Login from './routes/Login/Login';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
     ],
+  },
+  {
+    path: "/auroraorganic/login",
+    element: <Login/>,
   },
   {
     path: "/contacts/:contactId",

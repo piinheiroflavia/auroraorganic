@@ -7,6 +7,7 @@ module.exports = {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx}",
+    "./node_modules/tw-elements/dist/js/**/*.js",
   ],
   //pré-defino os temas que vou usar
   theme: {
@@ -20,6 +21,8 @@ module.exports = {
           900: '#475569'
         },
         aurora:{
+          fundoBody: '#F9FAFB',
+          tomNeutro: '#EDA37D',
           //cor clara
           fundoClaro: '#e2e8f0',
           //cor escura

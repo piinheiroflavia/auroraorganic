@@ -5,11 +5,15 @@ import imagemLogo from "../../assets/imgs/logoA.jpg"
 
 const Header = () => {
     return <div >
+        <div className="flex h-5  bg-aurora-fundoBody justify-center items-center px-3  ">
+             <p>20% OFF + frete grátis acima de R$99 com o cupom PRIMEIRACOMRPEA</p>
+        </div>
         <div className="flex h-15 bg-aurora-fundoEscuro dark:bg-aurora-100 justify-between items-center px-5">
             <img src={imagemLogo} alt="Banner" className="flex h-16"/>
             <div className="flex ">
-                <UserCircleIcon className="h-7 mx-6 text-gray-100 hidden sm:block cursor-pointer"></UserCircleIcon>
-                <ShoppingCartIcon  className="h-7 text-gray-100 hidden sm:block cursor-pointer"/>
+                <a href="/auroraorganic/login"> <UserCircleIcon className="h-7 mx-6 text-gray-100 hidden sm:block cursor-pointer"></UserCircleIcon></a>
+                <a href="#"> <ShoppingCartIcon  className="h-7 text-gray-100 hidden sm:block cursor-pointer"/> </a>
+                
             </div>
         </div>
         <div className="flex h-8  bg-aurora-fundoEscuro justify-center items-center px-3  ">
