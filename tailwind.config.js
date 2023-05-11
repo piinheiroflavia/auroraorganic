@@ -21,6 +21,7 @@ module.exports = {
           900: '#475569'
         },
         aurora:{
+          branco: '#fff',
           fundoBody: '#F9FAFB',
           tomNeutro: '#EDA37D',
           //cor clara

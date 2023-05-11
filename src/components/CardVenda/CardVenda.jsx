@@ -44,8 +44,8 @@ const products = [
   export default function Example() {
     return (
       <div className="bg-dark">
-          <h2 className="ml-20 mt-5 mb-0 text-slate-950 text-transform: uppercase text-2xl font-semibold">Os Mais Procurados do Momento</h2>
-        <div className="mx-auto max-w-2xl px-4 py-2 sm:px-6 sm:py-2 lg:max-w-7xl lg:px-8">
+          
+        <div className="mx-auto max-w-2xl px-4 py-1 sm:px-6 sm:py-1 lg:max-w-7xl lg:px-8">
       
           <div className="grid grid-cols-1 gap-x-6 gap-y-13 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8  border-t border-gray-200 pt-2 sm:mt-16 sm:pt-12 lg:mx-0">
             {products.map((product) => (
