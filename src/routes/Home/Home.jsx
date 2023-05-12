@@ -10,7 +10,7 @@ import InfoProduct from "../../components/InfoProduct/InfoProduct";
 const Home = () => {
     return (
       <>
-        <Header/>
+        
         <BannerTelaInical/>
         <h2 className="mt-40 mb-20 text-2xl grid justify-items-center text-center tracking-tight text-gray-900 sm:text-4xl font-medium">VIDA DE ALTA PERFORMANCE</h2>
         <h2 className="ml-20 mt-40 mb-0 text-slate-950 text-transform: uppercase text-2xl font-semibold">Os Mais Procurados do Momento</h2>
