@@ -1,62 +1,62 @@
 <h2>Projeto e-commerce Aurora Organic</h2>
 <h3>
 🚀 Tecnologias Utilizadas: <h3>
-<p> React.js com vitejs; </p>
-<p> Tailwind; </p>
-<p> Node js; </p>
-<p> MySQL . </p>
+<li> React.js com vitejs; </li>
+<li> Tailwind; </li>
+<li> Node js; </li>
+<li> MySQL . </li>
   
-<h3>🚀 Documentação: <h3>
-<p> Termo de Abertura; </p>
-<p> Plano Gerenciamento de Escopo; </p>
-<p> Plano gerenciamento de Projeto; </p>
-<p> Infraestrutura AWS . </p>
-<img src="./prototipo/Meu_PDF.png" alt="" width ='50%'>   
+<h3>🚀QrCode da Documentação: <h3>
+<li> Termo de Abertura; </li>
+<li> Plano Gerenciamento de Escopo; </li>
+<li> Plano gerenciamento de Projeto; </li>
+<li> Infraestrutura AWS . </li><br>
+<img src="./prototipo/Meu_PDF.png" alt="" width ='10%'>   
 
 <h3>🚀 Modelagem do banco: <h3>
-<img src="./prototipo/db_ecommerce.png" alt="" width ='50%'>   
+<img src="./prototipo/db_ecommerce.png" alt="" width ='40%'>   
   
 <h3>🚀 Protótipo: <h3>
   
 <div>
   <div>
-    <p>Página Home </p>
+    <li>Página Home </li>
     <img src="./prototipo/Home.jpg" alt="" width ='30%'>
   </div><br>
   <div>
-    <p>Página Produto </p>
+    <li>Página Produto </li>
     <img src="./prototipo/Aromaterapia.jpg" alt="" width ='30%'>
   </div><br>
   <div>
-    <p>Página Produto </p>
+    <li>Página Produto </li>
     <img src="./prototipo/SkinCare.jpg" alt="" width ='30%'>
   </div><br>
   <div>
-    <p>Página Blog </p>
+    <li>Página Blog </li>
     <img src="./prototipo/Aurora Blog.jpg" alt="" width ='30%'>
   </div><br>
   <div>
-    <p>Página Sobre Nós </p>
+    <li>Página Sobre Nós </li>
     <img src="./prototipo/Leia antes de comprar _).jpg" alt="" width ='30%'>
   </div><br>
   <div>
-    <p>Página Cadastro </p>
+    <li>Página Cadastro </li>
     <img src="./prototipo/Cadastrar.jpg" alt="" width ='30%'>
   </div><br>
   <div>
-    <p>Página Login </p>
+    <li>Página Login </li>
     <img src="./prototipo/Login.jpg" alt="" width ='30%'>
   </div><br>
   <div>
-    <p>Página Cesta </p>
+    <li>Página Cesta </li>
     <img src="./prototipo/Cesta.jpg" alt="" width ='30%'>
   </div><br>
   <div>
-    <p>Página Pedidos </p>
+    <li>Página Pedidos </li>
     <img src="./prototipo/Pedidos.jpg" alt="" width ='30%'>
   </div><br>
   <div>
-    <p>Página de Erro </p>
+    <li>Página de Erro </li>
     <img src="./prototipo/404.jpg" alt="" width ='30%'>
   </div><br>
 </div>
