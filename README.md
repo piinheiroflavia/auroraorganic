@@ -7,11 +7,11 @@
 <p> MySQL . </p>
   
 <h3>🚀 Documentação: <h3>
-<object data="_Termo de Aberto - Projeto Aurora organic .pdf  " type="application/pdf">
-    <p>Seu navegador não tem um plugin pra PDF</p>
-</object>
-<embed src="http://www.meudominio.com.br//meu_documento.pdf" width="760" height="500" type='application/pdf'>
-
+<p> Termo de Abertura; </p>
+<p> Plano Gerenciamento de Escopo; </p>
+<p> Plano gerenciamento de Projeto; </p>
+<p> Infraestrutura AWS . </p>
+<img src="./prototipo/Meu_PDF.png" alt="" width ='50%'>   
 
 <h3>🚀 Modelagem do banco: <h3>
 <img src="./prototipo/db_ecommerce.png" alt="" width ='50%'>   
