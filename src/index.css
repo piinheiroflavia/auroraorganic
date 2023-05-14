@@ -4,9 +4,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+/* 
 @layer components{
     .btn-newsletter{
         @apply py-2 m-3  pl-2 w-full max-w-lg  dark:text-gray-200 border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1;    
     }
-}
+} */
