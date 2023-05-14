@@ -7,9 +7,9 @@
 <p> MySQL . </p>
   
 <h3>🚀 Modelagem do banco: <h3>
-   
+<img src="./prototipo/db_ecommerce.png" alt="" width ='100%'>   
   
 <h3>🚀 Protótipo: <h3>
-<img src="" alt="" width ='100%'>
+<img src="./prototipo/Home.jpeg" alt="" width ='100%'>
 <img src="" alt="" width ='100%'><br>
 <img src="" alt="" width ='100%'>
