@@ -3,7 +3,7 @@
 import Footer from "../../components/Footer/Footer";
 import FormNewsLetter from "../../components/FormNewsLetter/FormNewsLetter";
 import Header from "../../components/Header/Header";
-import CardVenda from "../../components/CardVenda/CardVenda";
+import CardVenda from "../../components/CardVendaSkin/CardVendaSkin";
 import BannerTelaInical from "../../components/BannerInicial/BannerTelaInical";
 const Skincare = () => {
     return (  

@@ -57,7 +57,7 @@ const router = createBrowserRouter([
   },
   {
     path:"/auroraorganic",
-    element:<Home/>  
+    element:<Root/>  
   },
   
   {

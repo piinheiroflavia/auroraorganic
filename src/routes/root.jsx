@@ -6,6 +6,8 @@ export default function Root() {
       <>
         <Header/>
         <Home/>
+        <h1>test</h1>
       </>
     );
   }
+  
