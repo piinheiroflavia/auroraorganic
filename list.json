@@ -1,20 +1,42 @@
 [
     {
-      "name": "Calvin Hawkins",
-      "email": "calvin.hawkins@example.com",
-      "image":
-        "https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+      "id": "1",
+      "name": "'Óleo Essencial Natural de Melaleuca 10mL'",
+      "Preco": "'R$70,00'",
+      "novoPreco": "'R$40,00'",
+      "imageSrc": "'https://img.freepik.com/psd-premium/maquete-de-frasco-cosmetico-de-vidro-ambar_358694-1009.jpg'",
+      "imageAlt": "'Tall slender porcelain bottle with natural clay textured body and cork stopper.'",
+      "carrinho": true,
+      "favorite": false
     },
     {
-      "name": "Kristen Ramos",
-      "email": "kristen.ramos@example.com",
-      "image":
-        "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+      "id": 2,
+      "name": "'Óleo Essencial Natural de Melaleuca 10mL'",
+      "Preco": "'R$80,00'",
+      "novoPreco": "'R$60,00'",
+      "imageSrc": "'https://img.freepik.com/psd-premium/maquete-de-frasco-cosmetico-de-vidro-ambar_358694-1009.jpg'",
+      "imageAlt": "'Óleo Essencial Natural de Melaleuca 10mL'",
+      "carrinho": false,
+      "favorite": false
     },
     {
-      "name": "Ted Fox",
-      "email": "ted.fox@example.com",
-      "image":
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+      "id": 3,
+      "name": "'Óleo Essencial Natural de Melaleuca 10mL'",
+      "Preco": "'R$80,00'",
+      "novoPreco": "'R$50,00'",
+      "imageSrc": "'https://img.freepik.com/psd-premium/maquete-de-frasco-cosmetico-de-vidro-ambar_358694-1009.jpg'",
+      "imageAlt": "'Óleo Essencial Natural de Melaleuca 10mL'",
+      "carrinho": false,
+      "favorite": false
+    },
+    {
+      "id": 4,
+      "name": "'Óleo Essencial Natural de Melaleuca 10mL'",
+      "Preco": "'R$100,00'",
+      "novoPreco": "'R$90,00'",
+      "imageSrc": "'https://img.freepik.com/psd-premium/maquete-de-frasco-cosmetico-de-vidro-ambar_358694-1009.jpg'",
+      "imageAlt":" 'Óleo Essencial Natural de Melaleuca 10mL'",
+      "carrinho": false,
+      "favorite": false
     }
   ]

@@ -3,11 +3,13 @@ module.exports = {
   darkMode:'class',
   plugins: [
     require('@tailwindcss/aspect-ratio'),
+    require("tw-elements/dist/plugin.cjs")
   ],
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx}",
     "./node_modules/tw-elements/dist/js/**/*.js",
+    "./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   //pré-defino os temas que vou usar
   theme: {
