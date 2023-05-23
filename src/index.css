@@ -1,0 +1,12 @@
+/* São as três camadas necessarias para a aplicação, o tailwind trabalha com classes utilitarias, e é aqui que ele injata tudo */
+
+/* base entra em modo geral, se usar um h1 vai entrar em todos sem precisar entrar com o classname */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* 
+@layer components{
+    .btn-newsletter{
+        @apply py-2 m-3  pl-2 w-full max-w-lg  dark:text-gray-200 border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block rounded-md sm:text-sm focus:ring-1;    
+    }
+} */
