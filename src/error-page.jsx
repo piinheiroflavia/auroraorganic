@@ -1,6 +1,5 @@
 import { useRouteError } from "react-router-dom";
-import imagemLogo from "../src/assets/imgs/erro.jpg"
-import { Carousel } from "@material-tailwind/react";
+
 
 export default function ErrorPage() {
   const error = useRouteError();
