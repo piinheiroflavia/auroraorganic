@@ -1,6 +1,8 @@
 import Footer from "../../components/Footer/Footer";
 import FormNewsLetter from "../../components/FormNewsLetter/FormNewsLetter";
 import Header from "../../components/Header/Header";
+import React, { useState } from 'react';
+import axios from "axios";
 // Initialization for ES Users
 import {
     Ripple,
@@ -12,9 +14,49 @@ import {
 
 const Login = () => {
 
+const [data, setData]= useState({
+        email_cliente : '',
+        senha_cliente1 : ''
+});
+
+const [message,setMessage] = useState("");
+
+const sendmsg = async (e) => {
+    e.preventDefault();
+    const  headers = {
+        'headers': {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    await axios.post('http://localhost:9080/login', data, headers)
+    .then((response) => {
+      setMessage(response.data.message);
+    
+      setData({
+        email_cliente : '',
+        senha_cliente1 : ''
+    });
+
+    })
+    .catch((err) => {
+      setMessage(err.response.data.message);
+    });
+  
+};
+
+
+const valorinput = e => {  
+        setData({...data,[e.target.id]: e.target.value});   
+};
+
+
+
+
     return( 
     <div>
         <Header/>
+        {message ? <p>{message}</p>:""}
 
         <h1 className="mt-12  text-2xl grid justify-items-center text-center tracking-tight text-gray-900 sm:text-4xl font-medium">Login do Cliente</h1>
         <p className="mt-2 grid justify-items-center text-center tracking-tight  text-gray-600">Acesse agora a sua conta para acompanhar <br></br> seus pedidos, ver suas ofertas exclusivas e muito mais.</p>
@@ -22,17 +64,17 @@ const Login = () => {
             
             <div className="w-full justify-center items-center block max-w-sm rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
             
-            <form>
+            <form onSubmit={sendmsg} >
                 <div className="relative mb-6" data-te-input-wrapper-init>
                     <input type="email"className="peer block min-h-[auto] w-full border-b-2 rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                        id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter email" />
+                        value={data.email_cliente} onChange={valorinput}  id="email_cliente" aria-describedby="emailHelp" placeholder="Enter email" />
                     <label for="exampleInputEmail2" className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
                         >Email</label>
                 </div>
     
                 <div className="relative mb-6" data-te-input-wrapper-init>
                     <input type="password" className="peer block min-h-[auto] w-full rounded border-b-2 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                        id="exampleInputPassword2" placeholder="Password" />
+                         value={data.senha_cliente1} onChange={valorinput}  id="senha_cliente1" placeholder="Password" />
                     <label for="exampleInputPassword2" className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
                     >Senha</label>
                 </div>

@@ -14,7 +14,11 @@ app.use((req, res, next) => {
 
 const cadastro = require("./controllers/cadastro.js");
 
+const login = require("./controllers/login.js");
+
 app.use('/cadastro', cadastro);
+
+app.use('/login', login);
 
 app.listen(9080, () => {
   console.log("Servidor iniciado na porta 9080: http://localhost:9080");
