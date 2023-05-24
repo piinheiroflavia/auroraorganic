@@ -11,61 +11,30 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 
 
-// const products = [
-//   {
-//     id: 1,
-//     name: 'Óleo Essencial Natural de Melaleuca 10mL',
-//     Preco: 'R$70,00',
-//     novoPreco: 'R$40,00',
-//     imageSrc: 'https://img.freepik.com/psd-premium/maquete-de-frasco-cosmetico-de-vidro-ambar_358694-1009.jpg',
-//     imageAlt: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
-//     carrinho: true,
-//     favorite: false,
-//   },
-//   {
-//     id: 2,
-//     name: 'Óleo Essencial Natural de Melaleuca 10mL',
-//     Preco: 'R$80,00',
-//     novoPreco: 'R$60,00',
-//     imageSrc: 'https://img.freepik.com/psd-premium/maquete-de-frasco-cosmetico-de-vidro-ambar_358694-1009.jpg',
-//     imageAlt: 'Óleo Essencial Natural de Melaleuca 10mL',
-//     carrinho: false,
-//     favorite: false,
-//   },
-//   {
-//     id: 3,
-//     name: 'Óleo Essencial Natural de Melaleuca 10mL',
-//     Preco: 'R$80,00',
-//     novoPreco: 'R$50,00',
-//     imageSrc: 'https://img.freepik.com/psd-premium/maquete-de-frasco-cosmetico-de-vidro-ambar_358694-1009.jpg',
-//     imageAlt: 'Óleo Essencial Natural de Melaleuca 10mL',
-//     carrinho: false,
-//     favorite: false,
-//   },
-//   {
-//     id: 4,
-//     name: 'Óleo Essencial Natural de Melaleuca 10mL',
-//     Preco: 'R$100,00',
-//     novoPreco: 'R$90,00',
-//     imageSrc: 'https://img.freepik.com/psd-premium/maquete-de-frasco-cosmetico-de-vidro-ambar_358694-1009.jpg',
-//     imageAlt: 'Óleo Essencial Natural de Melaleuca 10mL',
-//     carrinho: false,
-//     favorite: false,
-//   },
-// ]
-
-
-
-
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 } 
   // initTE({ Dropdown, Ripple });
 
+let navbar1 = document.getElementById("navbar1");
+
+function isScreenSizeLessThan538() {
+  return window.innerWidth < 538;
+  console.log("Tela menor que 538 pixels.");
+}
+// if (isScreenSizeLessThan538()) {
+//   // Executar código específico para telas menores que 538 pixels
+//   console.log("Tela menor que 538 pixels.");
+// } else {
+//   // Executar código para telas maiores ou iguais a 538 pixels
+//   console.log("Tela maior ou igual a 538 pixels.");
+// }
+
+
 
   const Header = () => {
     const [open, setOpen] = useState(true)
+
 
 
     return <div >
@@ -205,7 +174,7 @@ function classNames(...classes) {
                                     <div className="flex">
                                       <button
                                         type="button"
-                                        className="font-medium text-indigo-600 hover:text-indigo-500"
+                                        className="font-medium text-indigo-900 hover:text-indigo-500"
                                       >
                                         Remove
                                       </button>
@@ -227,7 +196,7 @@ function classNames(...classes) {
         </Transition.Root>   
             </div>
         </div>
-        <div className="flex h-8  bg-aurora-fundoEscuro justify-center items-center px-3  ">
+        <div id="navbar1" className="flex h-8  bg-aurora-fundoEscuro justify-center items-center px-3  ">
              <a href="/auroraorganic" className="text-gray-100 text-base mx-5 sm:block"> Home </a>
             <a href="/auroraorganic/skincare" className="text-gray-100 text-base mx-5 sm:block"> SkinCare </a>
             <a href="/auroraorganic/aromaterapia" className="text-gray-100 text-base mx-5 sm:block"> Aromaterapia </a>

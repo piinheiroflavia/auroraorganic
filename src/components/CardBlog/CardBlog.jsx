@@ -40,12 +40,12 @@ const posts = [
 
 export default function Example() {
   return (
-    <div className=" py-24 sm:py-32">
+    <div className=" py-12 sm:py-24">
       <div className="grid justify-items-center mx-auto max-w-7xl px-6 lg:px-8">
         <div className=" mx-auto max-w-2xl lg:mx-0">
           <h2 className="text-3xl tracking-tight text-gray-950 sm:text-4xl font-medium">Nosso Blog</h2>
         </div>
-        <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 pt-9 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           
           {posts.map((post) => (
 
@@ -65,10 +65,17 @@ export default function Example() {
                 <h3 className="my-7 text-lg font-semibold leading-6 text-gray-900">
                   <span className="absolute inset-0"> {post.title}</span>
                 </h3>
-                <br></br>
-                <p className="my-5 line-clamp-3 text-sm leading-6 text-gray-600">{post.description}</p>
-                  <a href={post.href} className="relative z-10  text-orange-700  py-1.5 font-medium" 
-                >Saiba Mais <ArrowSmallRightIcon className="h-5 w-5 data-te-animation-start=onHover"/></a>        
+    
+                <p className="my-12 line-clamp-3 text-sm leading-6 text-gray-600">{post.description}</p>
+
+                <div className="flex mt-3 justify-start items-center">
+                  <div>
+                    <a  href={post.href} className=" text-orange-700  py-1.5 font-semibold " >Saber Mais</a>
+                  </div>
+                  <div>
+                    <ArrowSmallRightIcon className="h-4 mx-2 text-orange-700 hidden sm:block cursor-pointer"aria-hidden="true"></ArrowSmallRightIcon>
+                  </div>
+                </div>     
               </div>
               
             </article>
