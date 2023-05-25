@@ -3,7 +3,7 @@
 import Footer from "../../components/Footer/Footer";
 import FormNewsLetter from "../../components/FormNewsLetter/FormNewsLetter";
 import Header from "../../components/Header/Header";
-import CardVenda from "../../components/CardVendaSkin/CardVendaSkin";
+import CardVendArom from "../../components/CardVendArom/CardVendArom"
 import BannerTelaInical from "../../components/BannerInicial/BannerTelaInical";
 
 const Aromaterapia = () => {
@@ -17,9 +17,9 @@ const Aromaterapia = () => {
           </span> 
           
         </blockquote>
-        <CardVenda/>
-        <CardVenda/>
-        <CardVenda/>
+        <CardVendArom/>
+        <CardVendArom/>
+        <CardVendArom/>
         <br className="mb-40"></br>
         
         <FormNewsLetter/>   

@@ -130,7 +130,7 @@ const products = [
                 {/* <Favorite product={product} /> */}
                 {/* classificação com estrelas */}
                 <a href={product.carrinho} className="flex justify-center items-center relative mt-8 mb-2 p-2 bg-aurora-fundoEscuro font-medium text-gray-50 hover:bg-orange-700 hover:text-gray-50"
-                >Saiba Mais</a>   
+                >COMPRAR</a>   
               </a>
             ))}
           
