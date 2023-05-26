@@ -26,7 +26,7 @@ const Home = () => {
         <div className="mx-auto grid max-w-2xl grid-cols-1 items-center gap-x-8 gap-y-16 px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
           <div>
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Sobre nós</h2>
-            <p className="mt-4 text-gray-500">
+            <p className="mt-9 text-gray-500">
             Nosso propósito não se limita a ser apenas uma marca, mas sim a causar um impacto positivo por meio do autocuidado sustentável. Desde a obtenção de nossa matéria-prima até o descarte adequado de nossas embalagens após o uso, buscamos realizar todo o processo de maneira ecologicamente correta..
             </p>
             <div className="flex mt-8 justify-start items-center">
@@ -41,19 +41,19 @@ const Home = () => {
             <dl className="mt-7 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
               
                 <div className="border-t border-gray-200 pt-4">
-                  <dt className="font-medium  text-gray-900">PRODUTO NATURAL</dt>
+                  <dt className="font-semibold  text-gray-900">PRODUTO NATURAL</dt>
                   <dd className="mt-2 text-base text-gray-500">Sem químicas agressivas, com matérias-primas de origem orgânica e natural</dd>
                 </div>
                 <div className="border-t border-gray-200 pt-4">
-                  <dt className="font-medium text-gray-900">EMBALAGEM RECICLÁVEL</dt>
+                  <dt className="font-semibold text-gray-900">EMBALAGEM RECICLÁVEL</dt>
                   <dd className="mt-2 text-base text-gray-500">Produto biodegradáveis com embalagens recicladas e recicláveis</dd>
                 </div>
                 <div className="border-t border-gray-200 pt-4">
-                  <dt className="font-medium text-gray-900">SEM INGREDIENTES TÓXICOS</dt>
+                  <dt className="font-semibold text-gray-900">SEM INGREDIENTES TÓXICOS</dt>
                   <dd className="mt-2 text-base text-gray-500">Livre de sulafato, parabenos, alumínio, corante artificias, óleos minerais, silicones e petrolatos</dd>
                 </div>
                 <div className="border-t border-gray-200 pt-4">
-                  <dt className="font-medium text-gray-900">CRUELTY-FREE</dt>
+                  <dt className="font-semibold text-gray-900">CRUELTY-FREE</dt>
                   <dd className="mt-2 text-base text-gray-500">Sem testes em animais em nenhuma etapa de seu processo</dd>
                 </div>
             </dl>
@@ -90,7 +90,10 @@ const Home = () => {
           </span> 
           dia a dia .
         </blockquote>
-        <br className="mb-40"></br>
+        <br className="mb-24"></br>
+        <div className=" mx-auto max-w-2xl lg:mx-0">
+          <h2 className="flex justify-center  text-3xl tracking-tight text-gray-950 sm:text-4xl font-medium">Nosso Blog</h2>
+        </div>
         <CardBlog />
 
 

@@ -144,10 +144,17 @@ function classNames(...classes) {
                           </button>
                         </div>
                       </Transition.Child>
-                      <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
-                        <div className="px-4 sm:px-6">
-                          <Dialog.Title className="text-base font-semibold leading-6 text-gray-900">
-                            Cesta
+                      <div className="flex p-9 h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+                        <div className="flex px-9 sm:px-6 justify-center">
+                          <Dialog.Title className="text-xl font-semibold leading-6 text-gray-900">
+                          <div className="flex justify-start items-center">
+                          <div>
+                            Carrinho
+                          </div>
+                          <div>
+                            <ShoppingCartIcon  className="h-5  text-gray-900 hidden sm:block cursor-pointer" aria-hidden="true"/>
+                          </div>
+                        </div>
                           </Dialog.Title>
                         </div>
                         <div className="mt-8">
@@ -165,7 +172,7 @@ function classNames(...classes) {
 
                                 <div className="ml-4 flex flex-1 flex-col">
                                   <div>
-                                    <div className="flex justify-between text-base font-medium text-gray-900">
+                                    <div className="flex justify-between text-sm font-medium text-gray-900">
                                       <h3>
                                         <a href={product.href}>{product.name}</a>
                                       </h3>
@@ -178,15 +185,19 @@ function classNames(...classes) {
                                     <div className="flex">
                                       <button
                                         type="button"
-                                        className="font-medium text-indigo-900 hover:text-indigo-500"
-                                      >
-                                        Remove
+                                        className="font-medium text-indigo-900 hover:text-indigo-500">
+                                        Remover
                                       </button>
                                     </div>
                                   </div>
                                 </div>
                               </li>
                             ))}
+                            <div>
+                              <a href="#" 
+                              className="flex justify-center items-center relative mt-8 mb-2 p-2 bg-aurora-fundoEscuro font-medium text-gray-50 hover:bg-orange-700 hover:text-gray-50"
+                              >FINALIZAR COMPRA</a> 
+                            </div>
                           </ul>
                         </div>
                       </div>
