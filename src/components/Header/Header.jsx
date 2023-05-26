@@ -1,6 +1,6 @@
 //importando o icone
 import products from "../../../list.json"
-import {UserCircleIcon, ShoppingCartIcon} from "@heroicons/react/24/solid"
+import {UserCircleIcon, ShoppingCartIcon, XMarkIcon} from "@heroicons/react/24/solid"
 import ToggleTheme from "../ToggleTheme/ToggleTheme";
 import imagemLogo from "../../assets/imgs/logoA.jpg"
 import {Carousel, initTE, } from "tw-elements";
@@ -8,44 +8,48 @@ initTE({ Carousel });
 import { Menu } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
-
+import {useEffect} from "react";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 } 
   // initTE({ Dropdown, Ripple });
 
-let navbar1 = document.getElementById("navbar1");
-
-function isScreenSizeLessThan538() {
-  return window.innerWidth < 538;
-  console.log("Tela menor que 538 pixels.");
-}
-// if (isScreenSizeLessThan538()) {
-//   // Executar código específico para telas menores que 538 pixels
-//   console.log("Tela menor que 538 pixels.");
-// } else {
-//   // Executar código para telas maiores ou iguais a 538 pixels
-//   console.log("Tela maior ou igual a 538 pixels.");
-// }
-
-
 
   const Header = () => {
     const [open, setOpen] = useState(true)
 
-
+      useEffect(() => {
+        const navbar = document.getElementById('navbar1');
+        if (navbar) {
+          function isScreenSizeLessThan538() {
+            return window.innerWidth < 678;
+          }
+    
+          if (isScreenSizeLessThan538()) {
+            console.log("Tela menor que 538 pixels.");
+            navbar.style.display = "none";
+            console.log("esconder");
+          } else {
+            console.log("Tela maior ou igual a 538 pixels.");
+            console.log("mostrar");
+            navbar.style.display = " ";
+          }
+        }
+      }, []);
+      
 
     return <div >
-        <div className="flex h-5  bg-aurora-fundoBody justify-center items-center px-3  ">
-             <p>20% OFF + frete grátis acima de R$99 com o cupom PRIMEIRACOMPRA</p>
+        <div className="flex h-5  bg-aurora-fundoBody mx-auto max-w-7xl items-center justify-center p-3 lg:px-8 ">
+             <p className="text-base sm:text-xs">20% OFF + frete grátis acima de R$99 com o cupom PRIMEIRACOMPRA</p>
         </div>
         <div className="flex h-15 bg-aurora-fundoEscuro dark:bg-aurora-100 justify-between items-center px-5">
             <img src={imagemLogo} alt="Banner" className="flex h-16"/>
             <div className="flex ">
           <Menu as="div" className="relative inline-block text-left">
             <div>
+              {/* adicinar o nome do usuário */}
+              {/* {user ? <p>Olá {user}</p>:""} */}
               <Menu.Button className="inline-flex w-full ">
                 <UserCircleIcon className="h-7 mx-6 text-gray-100 hidden sm:block cursor-pointer"aria-hidden="true"></UserCircleIcon>
               </Menu.Button>
@@ -196,15 +200,16 @@ function isScreenSizeLessThan538() {
         </Transition.Root>   
             </div>
         </div>
-        <div id="navbar1" className="flex h-8  bg-aurora-fundoEscuro justify-center items-center px-3  ">
-             <a href="/auroraorganic" className="text-gray-100 text-base mx-5 sm:block"> Home </a>
+        <div  className="flex h-8 bg-aurora-fundoEscuro justify-center items-center px-3  ">
+          <navbar id="navbar1 flex h-8 justify-center items-center">
+            <a href="/auroraorganic" className="text-gray-100 text-base mx-5 sm:block"> Home </a>
             <a href="/auroraorganic/skincare" className="text-gray-100 text-base mx-5 sm:block"> SkinCare </a>
             <a href="/auroraorganic/aromaterapia" className="text-gray-100 text-base mx-5 sm:block"> Aromaterapia </a>
             <a href="/auroraorganic/blog" className="text-gray-100 text-base mx-5 sm:block"> Blog </a>
             <a href="/auroraorganic/sobre-nos" className="text-gray-100 text-base mx-5 sm:block"> Lei antes de comprar </a> 
-            <ToggleTheme/>
-        </div>
-        
+            <ToggleTheme/>                    
+          </navbar>          
+        </div>        
     </div>
     
     

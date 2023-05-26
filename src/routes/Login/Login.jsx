@@ -56,6 +56,7 @@ const valorinput = e => {
     return( 
     <div>
         <Header/>
+        
         {message ? <p>{message}</p>:""}
 
         <h1 className="mt-12  text-2xl grid justify-items-center text-center tracking-tight text-gray-900 sm:text-4xl font-medium">Login do Cliente</h1>
