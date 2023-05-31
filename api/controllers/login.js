@@ -3,9 +3,8 @@ const db = require("../db/models");
 const router = express.Router();
 
 router.post("/", async (req, res) => {
-  const {  email_cliente, senha_cliente1 } = req.body;
-  console.log("Email recebido:", email_cliente);
-  console.log("Senha recebida:", senha_cliente1);
+  const {  email_cliente, senha_cliente } = req.body;
+  
 
   try {
     // Verifique se o usuário com o email fornecido existe no banco de dados
@@ -18,7 +17,7 @@ router.post("/", async (req, res) => {
     }
 
     // Verifique se a senha fornecida coincide com a senha armazenada no banco de dados
-     if (usuario.senha_cliente != senha_cliente1) {
+     if (usuario.senha_cliente != senha_cliente) {
       return res.json({
         error: true,
         message: "Senha incorreta.",
@@ -31,12 +30,14 @@ router.post("/", async (req, res) => {
       error: false,
       message: "Login bem-sucedido!",
       data: usuario,
+      
     });
   } catch (error) {
     return res.json({
       error: true,
       message: "Erro ao realizar o login.",
       data: error,
+      
     });
   }
 });

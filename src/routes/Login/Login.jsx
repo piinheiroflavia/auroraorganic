@@ -16,7 +16,7 @@ const Login = () => {
 
 const [data, setData]= useState({
         email_cliente : '',
-        senha_cliente1 : ''
+        senha_cliente : ''
 });
 
 const [message,setMessage] = useState("");
@@ -35,7 +35,7 @@ const sendmsg = async (e) => {
     
       setData({
         email_cliente : '',
-        senha_cliente1 : ''
+        senha_cliente : ''
     });
 
     })
@@ -74,7 +74,7 @@ const valorinput = e => {
     
                 <div className="relative mb-6" data-te-input-wrapper-init>
                     <input type="password" className="peer block min-h-[auto] w-full rounded border-b-2 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                         value={data.senha_cliente1} onChange={valorinput}  id="senha_cliente1" placeholder="Password" />
+                         value={data.senha_cliente} onChange={valorinput}  id="senha_cliente" placeholder="Password" />
                     <label for="exampleInputPassword2" className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
                     >Senha</label>
                 </div>
