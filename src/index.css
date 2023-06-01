@@ -9,3 +9,10 @@
         border: 6px solid rgba(0, 0, 0, 0.2);
       }
 }
+
+@layer components{
+  #msgBoxAlert{
+    display: none;
+  } 
+
+}

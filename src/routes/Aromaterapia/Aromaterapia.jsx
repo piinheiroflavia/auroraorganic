@@ -4,7 +4,6 @@ import Footer from "../../components/Footer/Footer";
 import FormNewsLetter from "../../components/FormNewsLetter/FormNewsLetter";
 import Header from "../../components/Header/Header";
 import CardVendArom from "../../components/CardVendArom/CardVendArom"
-import BannerTelaInical from "../../components/BannerInicial/BannerTelaInical";
 
 const Aromaterapia = () => {
     return (

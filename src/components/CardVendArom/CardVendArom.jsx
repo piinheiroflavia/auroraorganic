@@ -1,8 +1,10 @@
 import {PlusIcon} from "@heroicons/react/24/solid"
+import { Carousel } from "@material-tailwind/react";
 import { Dialog, RadioGroup, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { Fragment, useState } from 'react'
+import { Rating } from "@material-tailwind/react";
 const products = [
     {
       id: 1,
@@ -70,7 +72,7 @@ const products = [
     //passar o mouse
     function addCarrinhoCard(event) {
       setIsMouseOver(true);
-      addCarrinhoCards.event.valu
+      
     }
     function outCarrinhoCard() {
       setIsMouseOver(false);
@@ -79,9 +81,9 @@ const products = [
     return (
       <div className="bg-dark">
           
-        <div className="mx-auto max-w-2xl px-6 py-1 sm:px-6 sm:py-1 lg:max-w-7xl lg:px-8">
+        <div className=" mx-auto max-w-2xl px-6 py-1 sm:px-6 sm:py-1 lg:max-w-7xl lg:px-8">
       
-          <div className="grid grid-cols-1 gap-x-6 gap-y-13 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8  border-t border-gray-200 pt-2 sm:mt-16 sm:pt-12 lg:mx-0">
+          <div className=" grid grid-cols-1 gap-x-6 gap-y-13 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8  border-t border-gray-200 pt-2 sm:mt-16 sm:pt-12 lg:mx-0">
             {products.map((product) => (
               <a key={product.id} href={product.href} className="group py-4 px-6 rounded-lg bg-aurora-branco">
                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
@@ -93,6 +95,7 @@ const products = [
                 </div>
                 <h3 className="mt-4 text-sm text-gray-700">{product.name}</h3>
                 {/* Itens da lista */}
+                
                 <ul class="flex my-2 justify-start">
                     <li>
                       <svg
@@ -157,13 +160,11 @@ const products = [
                       </svg>
                     </li>
                     
-                  </ul>
+                </ul>
                 <p className="mt-1 text-xs font-medium text-gray-900"><s>{product.Preco}</s></p>
                 <p className="mt-1 text-xl font-medium text-gray-900">{product.novoPreco}</p>
                 {/* <Favorite product={product} /> */}
-                {/* classificação com estrelas */}
-
-              
+                {/* classificação com estrelas */}              
               <button type="button" className="flex justify-center w-full items-center relative mt-8 mb-2 p-2 bg-aurora-fundoEscuro font-medium text-gray-50 hover:bg-orange-700 hover:text-gray-50"
                 onClick={() => setOpen(true)}> Saber Mais </button>
 
@@ -180,7 +181,7 @@ const products = [
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                   >
-                    <div className="fixed inset-0 hidden bg-opacity-75 transition-opacity md:block" />
+                    <div className="fixed inset-0 hidden bg-aurora-bgFundoModal bg-opacity-75 transition-opacity md:block" />
                   </Transition.Child>
 
                   <div className="fixed inset-0 z-10 overflow-y-auto">
@@ -210,93 +211,27 @@ const products = [
                               <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                             </button>
 
-                            <div className="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
-                              <div className="aspect-h-3 aspect-w-2 overflow-hidden rounded-lg bg-gray-100 sm:col-span-4 lg:col-span-5">
-                                <img src={product.imageSrc} alt={product.imageAlt} className="object-cover object-center" />
+                            <div className="grid w-full grid-cols-1 items-start gap-x-5 gap-y-6 sm:grid-cols-12 lg:gap-x-8 ">
+                              <div className="aspect-h-2 aspect-w-2 overflow-hidden rounded-lg bg-gray-100 sm:col-span-2 lg:col-span-5">
+                                <img src={product.imageSrc} alt={product.imageAlt} className="drop-shadow-md object-cover object-center" />
                               </div>
                               <div className="sm:col-span-8 lg:col-span-7">
                                 <h2 className="text-2xl font-bold text-gray-900 sm:pr-12">{product.name}</h2>
 
                                 <section aria-labelledby="information-heading" className="mt-2">
                                   {/* Itens da lista */}
-                                  <h3 className="mt-4 text-sm text-gray-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                  Animi iste cupiditate esse reprehenderit ipsa,illum assumenda o fficia quaerat magni, id expedita nulla molestiae blanditiis
-                                   hic at dicta quas? Animi, dolorum.
-                                   Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                  Animi iste cupiditate esse reprehenderit ipsa,illum assumenda o fficia quaerat magni, id expedita nulla molestiae blanditiis
-                                   hic at dicta quas? Animi, dolorum.</h3>
-                                  <ul class="flex my-4 justify-start">
-                                      <li>
-                                        <svg
-                                          xmlns="http://www.w3.org/2000/svg"
-                                          viewBox="0 0 24 24"
-                                          fill="currentColor"
-                                          class="mr-1 h-3 w-3 text-warning">
-                                          <path
-                                            fill-rule="evenodd"
-                                            d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                                            clip-rule="evenodd" />
-                                        </svg>
-                                      </li>
-                                      <li>
-                                        <svg
-                                          xmlns="http://www.w3.org/2000/svg"
-                                          viewBox="0 0 24 24"
-                                          fill="currentColor"
-                                          class="mr-1 h-3 w-3 text-warning">
-                                          <path
-                                            fill-rule="evenodd"
-                                            d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                                            clip-rule="evenodd" />
-                                        </svg>
-                                      </li>
-                                      <li>
-                                        <svg
-                                          xmlns="http://www.w3.org/2000/svg"
-                                          viewBox="0 0 24 24"
-                                          fill="currentColor"
-                                          class="mr-1 h-3 w-3 text-warning">
-                                          <path
-                                            fill-rule="evenodd"
-                                            d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                                            clip-rule="evenodd" />
-                                        </svg>
-                                      </li>
-                                      <li>
-                                        <svg
-                                          xmlns="http://www.w3.org/2000/svg"
-                                          viewBox="0 0 24 24"
-                                          fill="currentColor"
-                                          class="mr-1 h-3 w-3 text-warning">
-                                          <path
-                                            fill-rule="evenodd"
-                                            d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                                            clip-rule="evenodd" />
-                                        </svg>
-                                      </li>
-                                      <li>
-                                        <svg
-                                          xmlns="http://www.w3.org/2000/svg"
-                                          fill="none"
-                                          viewBox="0 0 24 24"
-                                          stroke-width="1.5"
-                                          stroke="currentColor"
-                                          class="mr-1 h-3 w-3 text-warning">
-                                          <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
-                                        </svg>
-                                      </li>
-                                      
-                                    </ul>
+                                  <h3 className="mt-4 text-sm text-gray-700">Descrição</h3>
+                                   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                                  Animi iste cupiditate esse reprehenderit ipsa.
+                                  </p>
+                                  <Rating className="flex my-4 justify-start"/>
                                   <p className="mt-2 text-xs font-medium text-gray-900"><s>{product.Preco}</s></p>
                                   <p className="text-2xl text-gray-900">{product.novoPreco}</p>
                                   <a href={product.carrinho} id="addCarrinhoCards"  
                                   onMouseOver={addCarrinhoCard}
                                   onMouseOut={outCarrinhoCard} 
                                   className="flex justify-center items-end relative mt-8 mb-2 p-2 bg-aurora-fundoEscuro font-medium text-gray-50 hover:text-gray-50"
-                                  >{isMouseOver ? <PlusIcon className="h-6 text-gray-50 hidden sm:block cursor-pointer" /> : 'Add Carrinho'}</a>
+                                  >{isMouseOver ? <PlusIcon className="animate-pulse h-6 text-gray-50 hidden sm:block cursor-pointer" /> : 'Add Carrinho'}</a>
                                 </section>
                               </div>
                             </div>
