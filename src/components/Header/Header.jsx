@@ -45,7 +45,11 @@ function classNames(...classes) {
         }
       }, []);
       
-
+      function removerProdutoDoCarrinho(productId) {
+        const novoCarrinho = carrinho.filter((product) => product.id !== productId);
+        setCarrinho(novoCarrinho);
+      }
+      
     return <div >
         <div className="flex h-5  bg-aurora-fundoBody mx-auto max-w-7xl items-center justify-center p-3 lg:px-8 ">
              <p className="text-xs sm:text-base">20% OFF + frete grátis acima de R$99 com o cupom PRIMEIRACOMPRA</p>
@@ -191,6 +195,7 @@ function classNames(...classes) {
                                           <button
                                             type="button"
                                             className="font-medium text-gray-900 hover:text-indigo-900"
+                                            onClick={() => removerProdutoDoCarrinho(product.id)}
                                           >
                                             Remover
                                           </button>

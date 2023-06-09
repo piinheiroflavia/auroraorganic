@@ -18,14 +18,13 @@ const Home = () => {
         <br></br><br></br>
         <h2 className="ml-20 mt-5 mb-0 text-slate-950 text-transform: uppercase text-2xl font-semibold">Os Aromas Mais Procurados do Momento</h2>
         <CardVendArom/>
-        <br></br><br></br>
-        <br></br><br></br>
-        <InfoProduct/>
+        <br></br>
+
 
         <div className="">
         <div className="mx-auto grid max-w-2xl grid-cols-1 items-center gap-x-8 gap-y-16 px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
           <div>
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Sobre nós</h2>
+          <h2 className="mb-0 text-slate-950 text-transform: uppercase text-2xl font-semibold">Sobre Nós</h2>
             <p className="mt-9 text-gray-500">
             Nosso propósito não se limita a ser apenas uma marca, mas sim a causar um impacto positivo por meio do autocuidado sustentável. Desde a obtenção de nossa matéria-prima até o descarte adequado de nossas embalagens após o uso, buscamos realizar todo o processo de maneira ecologicamente correta..
             </p>
@@ -82,22 +81,18 @@ const Home = () => {
           </div>
         </div>
       </div>
+        <div className=" mx-auto max-w-2xl lg:mx-0">
+        <h2 className="ml-20 text-slate-950 text-transform: uppercase text-2xl font-semibold">Nosso Blog</h2>
+        </div>
+        <CardBlog />
       
-        <blockquote className="mb-20 text-3xl font-semibold italic text-center text-gray-900 sm:text-4xl">
+        <blockquote className="my-40 text-3xl font-semibold italic text-center text-gray-900 sm:text-4xl">
         Mudando o mundo começando pelo  
           <span className="mx-3 before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-orange-700 relative inline-block">
             <span className="mx-1 relative text-white">  nosso  </span>
           </span> 
           dia a dia .
         </blockquote>
-        <br className="mb-24"></br>
-        <div className=" mx-auto max-w-2xl lg:mx-0">
-          <h2 className="flex justify-center  text-3xl tracking-tight text-gray-950 sm:text-4xl font-medium">Nosso Blog</h2>
-        </div>
-        <CardBlog />
-        
-
-
         <FormNewsLetter/>
         <Footer/>
         
