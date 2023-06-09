@@ -32,7 +32,9 @@ const sendmsg = async (e) => {
     await axios.post('http://localhost:9080/login', data, headers)
     .then((response) => {
       setMessage(response.data.message);
-    
+    // Salvar informações do usuário no localStorage
+    localStorage.setItem('usuario', JSON.stringify(response.data.data));
+
       setData({
         email_cliente : '',
         senha_cliente : ''
@@ -46,6 +48,8 @@ const sendmsg = async (e) => {
 };
 
 
+
+
 const valorinput = e => {  
         setData({...data,[e.target.id]: e.target.value});   
 };
@@ -53,9 +57,11 @@ const valorinput = e => {
 
 
 
+
     return( 
     <div>
         <Header/>
+        
         {message ? <p>{message}</p>:""}
 
         <h1 className="mt-12  text-2xl grid justify-items-center text-center tracking-tight text-gray-900 sm:text-4xl font-medium">Login do Cliente</h1>
@@ -66,17 +72,17 @@ const valorinput = e => {
             
             <form onSubmit={sendmsg} >
                 <div className="relative mb-6" data-te-input-wrapper-init>
-                    <input type="email"className="peer block min-h-[auto] w-full border-b-2 rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                    <input type="email" className="peer block min-h-[auto] w-full border-b-2 rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-gray-700 dark:placeholder:text-gray-700 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0 invalid:focus:border-2  invalid:focus:border-red-600 invalid:focus:dark:border-2 invalid:focus:dark:border-red-600"
                         value={data.email_cliente} onChange={valorinput}  id="email_cliente" aria-describedby="emailHelp" placeholder="Enter email" />
                     <label for="exampleInputEmail2" className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                        >Email</label>
+                        >Email</label>  
                 </div>
     
                 <div className="relative mb-6" data-te-input-wrapper-init>
                     <input type="password" className="peer block min-h-[auto] w-full rounded border-b-2 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                          value={data.senha_cliente} onChange={valorinput}  id="senha_cliente" placeholder="Password" />
                     <label for="exampleInputPassword2" className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                    >Senha</label>
+                    >Senha</label> 
                 </div>
 
                 <div className="mb-6 flex items-center justify-between">        
@@ -95,7 +101,8 @@ const valorinput = e => {
             </form>
             </div>
         </div>
-        <Footer/>
+        <hr className=" border-gray-300"></hr>
+        <Footer />
 
     </div>
         

@@ -1,6 +1,6 @@
 //importando o icone
 import products from "../../../list.json"
-import {UserCircleIcon, ShoppingCartIcon} from "@heroicons/react/24/solid"
+import {UserCircleIcon, ShoppingCartIcon, XMarkIcon} from "@heroicons/react/24/solid"
 import ToggleTheme from "../ToggleTheme/ToggleTheme";
 import imagemLogo from "../../assets/imgs/logoA.jpg"
 import {Carousel, initTE, } from "tw-elements";
@@ -8,44 +8,48 @@ initTE({ Carousel });
 import { Menu } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
-
+import {useEffect} from "react";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 } 
   // initTE({ Dropdown, Ripple });
 
-let navbar1 = document.getElementById("navbar1");
-
-function isScreenSizeLessThan538() {
-  return window.innerWidth < 538;
-  console.log("Tela menor que 538 pixels.");
-}
-// if (isScreenSizeLessThan538()) {
-//   // Executar código específico para telas menores que 538 pixels
-//   console.log("Tela menor que 538 pixels.");
-// } else {
-//   // Executar código para telas maiores ou iguais a 538 pixels
-//   console.log("Tela maior ou igual a 538 pixels.");
-// }
-
-
 
   const Header = () => {
     const [open, setOpen] = useState(true)
 
-
+      useEffect(() => {
+        const navbar = document.getElementById('navbar1');
+        if (navbar) {
+          function isScreenSizeLessThan538() {
+            return window.innerWidth < 678;
+          }
+    
+          if (isScreenSizeLessThan538()) {
+            console.log("Tela menor que 538 pixels.");
+            navbar.style.display = "none";
+            console.log("esconder");
+          } else {
+            console.log("Tela maior ou igual a 538 pixels.");
+            console.log("mostrar");
+            navbar.style.display = " ";
+          }
+        }
+      }, []);
+      
 
     return <div >
-        <div className="flex h-5  bg-aurora-fundoBody justify-center items-center px-3  ">
-             <p>20% OFF + frete grátis acima de R$99 com o cupom PRIMEIRACOMPRA</p>
+        <div className="flex h-5  bg-aurora-fundoBody mx-auto max-w-7xl items-center justify-center p-3 lg:px-8 ">
+             <p className="text-xs sm:text-base">20% OFF + frete grátis acima de R$99 com o cupom PRIMEIRACOMPRA</p>
         </div>
         <div className="flex h-15 bg-aurora-fundoEscuro dark:bg-aurora-100 justify-between items-center px-5">
-            <img src={imagemLogo} alt="Banner" className="flex h-16"/>
+            <a  href="/auroraorganic"><img src={imagemLogo} alt="Banner" className="flex h-16"/></a>
             <div className="flex ">
           <Menu as="div" className="relative inline-block text-left">
             <div>
+              {/* adicinar o nome do usuário */}
+              {/* {user ? <p>Olá {user}</p>:""} */}
               <Menu.Button className="inline-flex w-full ">
                 <UserCircleIcon className="h-7 mx-6 text-gray-100 hidden sm:block cursor-pointer"aria-hidden="true"></UserCircleIcon>
               </Menu.Button>
@@ -93,12 +97,13 @@ function isScreenSizeLessThan538() {
               </Menu.Items>
             </Transition>
           </Menu>
+
           <button type="button"className="rounded-md text-gray-300 hover:text-white "
             onClick={() => setOpen(true)}>
               <ShoppingCartIcon  className="h-7 text-gray-100 hidden sm:block cursor-pointer" aria-hidden="true"/>
           </button>
           <Transition.Root show={open} as={Fragment}>
-          <Dialog as="div" className="relati  ve z-10" onClose={setOpen}>
+          <Dialog as="div" className="relative z-10" onClose={setOpen}>
             <Transition.Child
               as={Fragment}
               enter="ease-in-out duration-500"
@@ -108,9 +113,9 @@ function isScreenSizeLessThan538() {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <div className="fixed inset-0 bg-gray-600 bg-opacity-75 transition-opacity" />
+              <div className="fixed inset-0 transition-opacity" />
             </Transition.Child>
-                          
+
             <div className="fixed inset-0 overflow-hidden">
               <div className="absolute inset-0 overflow-hidden">
                 <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
@@ -123,69 +128,96 @@ function isScreenSizeLessThan538() {
                     leaveFrom="translate-x-0"
                     leaveTo="translate-x-full"
                   >
-                    <Dialog.Panel className="pointer-events-auto relative w-screen max-w-md">
-                      <Transition.Child
-                        as={Fragment}
-                        enter="ease-in-out duration-500"
-                        enterFrom="opacity-0"
-                        enterTo="opacity-100"
-                        leave="ease-in-out duration-500"
-                        leaveFrom="opacity-100"
-                        leaveTo="opacity-0"
-                      >
-                        <div className="absolute left-0 top-0 -ml-8 flex pr-2 pt-4 sm:-ml-10 sm:pr-4">
-                          <button type="button"className="rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
-                            onClick={() => setOpen(false)}>
-                            <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                          </button>
-                        </div>
-                      </Transition.Child>
-                      <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
-                        <div className="px-4 sm:px-6">
-                          <Dialog.Title className="text-base font-semibold leading-6 text-gray-900">
-                            Cesta
+                    <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
+                      <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+                        <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+                          <div className="flex items-start justify-between">
+                          <Dialog.Title className="text-xl font-semibold leading-6 text-gray-900">
+                            <div className="flex justify-start items-center">
+                              <div>
+                                Carrinho 
+                              </div>
+                              <div>
+                                <ShoppingCartIcon  className="h-5  text-gray-900 hidden sm:block cursor-pointer" aria-hidden="true"/>
+                              </div>
+                            </div>
                           </Dialog.Title>
-                        </div>
-                        <div className="mt-8">
-                        <div className="flow-root">
-                          <ul role="list" className="-my-6 divide-y divide-gray-200">
-                            {products.map((product) => (
-                              <li key={product.id} className="flex py-6">
-                                <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                  <img
-                                    src={product.imageSrc}
-                                    alt={product.imageAlt}
-                                    className="h-full w-full object-cover object-center"
-                                  />
-                                </div>
+                            <div className="ml-3 flex h-7 items-center">
+                              <button
+                                type="button"
+                                className="-m-2 p-2 text-gray-400 hover:text-gray-500"
+                                onClick={() => setOpen(false)}
+                              > 
+                                <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                              </button>
+                            </div>
+                          </div>
 
-                                <div className="ml-4 flex flex-1 flex-col">
-                                  <div>
-                                    <div className="flex justify-between text-base font-medium text-gray-900">
-                                      <h3>
-                                        <a href={product.href}>{product.name}</a>
-                                      </h3>
-                                      <p className="ml-4">{product.novoPreco}</p>
+                          <div className="mt-8">
+                            <div className="flow-root">
+                              <ul role="list" className="-my-6 divide-y divide-gray-200">
+                                {products.map((product) => (
+                                  <li key={product.id} className="flex py-6">
+                                    <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                      <img
+                                        src={product.imageSrc}
+                                        alt={product.imageAlt}
+                                        className="h-full w-full object-cover object-center"
+                                      />
                                     </div>
-                                    
-                                  </div>
-                                  <div className="flex flex-1 items-end justify-between text-sm">
-                                  
-                                    <div className="flex">
-                                      <button
-                                        type="button"
-                                        className="font-medium text-indigo-900 hover:text-indigo-500"
-                                      >
-                                        Remove
-                                      </button>
+
+                                    <div className="ml-4 flex flex-1 flex-col">
+                                      <div>
+                                        <div className="flex justify-between text-base font-medium text-gray-900">
+                                          <h3>
+                                            <a href={product.href}>{product.name}</a>
+                                          </h3>
+                                          <p className="ml-4">{product.price}</p>
+                                        </div>
+                                        <p className="mt-1 text-sm text-gray-500">{product.color}</p>
+                                      </div>
+                                      <div className="flex flex-1 items-end justify-between text-sm">
+                                        <p className="text-gray-500">Valor: {product.novoPreco}</p>
+
+                                        <div className="flex">
+                                          <button
+                                            type="button"
+                                            className="font-medium text-gray-900 hover:text-indigo-900"
+                                          >
+                                            Remover
+                                          </button>
+                                        </div>
+                                      </div>
                                     </div>
-                                  </div>
-                                </div>
-                              </li>
-                            ))}
-                          </ul>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
                         </div>
-                      </div>
+
+                        <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
+                          <div className="flex justify-between text-base font-medium text-gray-900">
+                            <p>Total</p>
+                            <p>R$??</p>
+                          </div>
+                          <div className="mt-6">
+                            <a
+                              href="#"
+                              className="flex max-w-lg w-full justify-center items-center relative mt-8 p-2 bg-aurora-fundoEscuro font-medium text-gray-50 hover:bg-orange-700 hover:text-gray-50"
+                            >
+                              Checkout
+                            </a>
+                          </div>
+                          <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
+                            <p> ou <button type="button" className="font-medium text-gray-900 hover:text-indigo-900"
+                                onClick={() => setOpen(false)}
+                              > continuar comprando
+                                <span aria-hidden="true"> &rarr;</span>
+                              </button>
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </Dialog.Panel>
                   </Transition.Child>
@@ -193,18 +225,21 @@ function isScreenSizeLessThan538() {
               </div>
             </div>
           </Dialog>
-        </Transition.Root>   
+        </Transition.Root>                
+          
+          
             </div>
         </div>
-        <div id="navbar1" className="flex h-8  bg-aurora-fundoEscuro justify-center items-center px-3  ">
-             <a href="/auroraorganic" className="text-gray-100 text-base mx-5 sm:block"> Home </a>
+        <div  className=" bg-aurora-fundoEscuro px-4  ">
+          <div id="navbar1" className=" flex h-8 justify-center items-center">
+            <a href="/auroraorganic" className="text-gray-100 text-base mx-5 sm:block"> Home </a>
             <a href="/auroraorganic/skincare" className="text-gray-100 text-base mx-5 sm:block"> SkinCare </a>
             <a href="/auroraorganic/aromaterapia" className="text-gray-100 text-base mx-5 sm:block"> Aromaterapia </a>
             <a href="/auroraorganic/blog" className="text-gray-100 text-base mx-5 sm:block"> Blog </a>
             <a href="/auroraorganic/sobre-nos" className="text-gray-100 text-base mx-5 sm:block"> Lei antes de comprar </a> 
-            <ToggleTheme/>
-        </div>
-        
+            <ToggleTheme/>                    
+          </div>          
+        </div>        
     </div>
     
     

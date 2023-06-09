@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
     // Se a autenticação for bem-sucedida, você pode retornar uma resposta com sucesso
     return res.json({
       error: false,
-      message: "Login bem-sucedido!",
+      message: "seja bem vindo" ,
       data: usuario,
       
     });
