@@ -11,11 +11,13 @@ initTE({ Ripple, Input });
 const Login = () => {
     
 
-    const [data, setData]= useState({
+const [data, setData]= useState({
             email_cliente : '',
             senha_cliente1 : ''
-    });
-
+});
+// const armazenar = (chave,valor) =>{
+//     localStorage.setItem(chave,valor)
+// }
 const [open, setOpen] = React.useState(0);
  
 const handleOpen = (value) => {
@@ -31,16 +33,24 @@ const sendmsg = async (e) => {
             'Content-Type': 'application/json'
         }
     };
+
     await axios.post('http://localhost:9080/login', data, headers)
     .then((response) => {
       setMessage(response.data.message);
     
-      setData({
-        email_cliente : '',
-        senha_cliente1 : ''
-    });
-
-    })
+      // Verifique se a resposta é bem-sucedida antes de redirecionar
+        if (response.data.success) {
+            //limpa o campo
+            setData({
+            email_cliente: '',
+            senha_cliente1: ''
+            });
+            //redireciona para home
+            setTimeout(() => {
+            window.location.assign("/auroraorganic");
+            }, 3000);
+        }
+        })
     .catch((err) => {
       setMessage(err.response.data.message);
     });
@@ -51,12 +61,19 @@ const valorinput = e => {
         setData({...data,[e.target.id]: e.target.value});   
 };
 
+
 //alert mensagem do banco
 const acionarEnviar = () => { 
+
+    //Armazene os dados no localStorage
+    localStorage.setItem('email', data.email_cliente);
+    
     let msgAlert = document.getElementById('msgBoxAlert');
     let titleCad = document.getElementById("titleCad");
     msgAlert.style.display = " block"; 
     titleCad.style.marginTop = "0px"
+
+    
 }
 //valid label email
 const upLabelEmail = () => {

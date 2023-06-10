@@ -13,7 +13,6 @@ const posts = [
   {
     id: 1,
     title: 'Shampoo sólido e barra, 6 motivos para usar!!',
-    href: '',
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab quam libero laborum laboriosam voluptates placeat harum aut, animi quasi est rerum eius ex repellendus ipsum maiores ratione debitis beatae similique!',
     date: 'Mar 16, 2020',
@@ -24,7 +23,6 @@ const posts = [
   {
     id: 2,
     title: 'Você sabe o que é upcycling?',
-    href: '',
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab quam libero laborum laboriosam voluptates placeat harum aut, animi quasi est rerum eius ex repellendus ipsum maiores ratione debitis beatae similique!',
     date: 'Mar 16,  2023',
@@ -34,7 +32,6 @@ const posts = [
   {
     id: 3,
     title: '6 beneficíos de skincare e como usar no dia-a-dia',
-    href: '',
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab quam libero laborum laboriosam voluptates placeat harum aut, animi quasi est rerum eius ex repellendus ipsum maiores ratione debitis beatae similique!',
     date: 'Mar 16, 2020',
@@ -76,7 +73,8 @@ export default function Example() {
 
                 <div className="flex justify-start items-center">
                   <div>
-                    <a  href={post.href} className="bg-aurora-fundoEscuro text-gray-50 px-5  hover:bg-orange-700 py-1.5 font-semibold " >Leia mais</a>
+                    <button type="button" className="flex justify-center w-full items-center relative p-2 py-1 bg-aurora-fundoEscuro font-medium text-gray-50 hover:bg-orange-700 hover:text-gray-50"
+                    > <a href="/auroraorganic/blog">Leia mais</a>  </button>
                   </div>
                   {/* <div>
                     <ArrowSmallRightIcon className="h-4 mx-2 text-orange-700 hidden sm:block cursor-pointer"aria-hidden="true"></ArrowSmallRightIcon>

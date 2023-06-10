@@ -1,47 +1,51 @@
-import {PlusIcon} from "@heroicons/react/24/solid"
+import {PlusIcon, XMarkIcon} from "@heroicons/react/24/solid"
 import { Carousel } from "@material-tailwind/react";
 import { Dialog, RadioGroup, Transition } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { Fragment, useState } from 'react'
 import { Rating } from "@material-tailwind/react";
+import ImagemSkin1 from '../../assets/imgs/skin1.png';
+import ImagemSkin2 from '../../assets/imgs/skin2.png';
+import ImagemSkin3 from '../../assets/imgs/skin3.png';
+import ImagemSkin4 from '../../assets/imgs/skin4.png';
+
 const products = [
   {
     id: 1,
-    name: 'Óleo Essencial Natural de Melaleuca 10mL',
+    name: 'KIT ÓLEO DE ROSA MOSQUETA E BALM CB2',
     Preco: 'R$70,00',
     novoPreco: 'R$40,00',
-    imageSrc: 'https://img.freepik.com/psd-premium/maquete-de-frasco-cosmetico-de-vidro-ambar_358694-1009.jpg',
+    imageSrc: ImagemSkin1,
     imageAlt: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
     carrinho: true,
     favorite: false,
   },
   {
     id: 2,
-    name: 'Óleo Essencial Natural de Melaleuca 10mL',
+    name: 'SOLUÇÃO ÁCIDO SALICÍLICO, REDUZIR CRAVOS E ESPINHAS',
     Preco: 'R$80,00',
     novoPreco: 'R$60,00',
-    imageSrc: 'https://img.freepik.com/psd-premium/maquete-de-frasco-cosmetico-de-vidro-ambar_358694-1009.jpg',
+    imageSrc: ImagemSkin2,
     imageAlt: 'Óleo Essencial Natural de Melaleuca 10mL',
     carrinho: false,
     favorite: false,
   },
   {
     id: 3,
-    name: 'Óleo Essencial Natural de Melaleuca 10mL',
+    name: 'HIDRATANTE + VITAMINA C, ANTIOXIDANTE CORPORAL',
     Preco: 'R$80,00',
     novoPreco: 'R$50,00',
-    imageSrc: 'https://img.freepik.com/psd-premium/maquete-de-frasco-cosmetico-de-vidro-ambar_358694-1009.jpg',
-    imageAlt: 'Óleo Essencial Natural de Melaleuca 10mL',
+    imageSrc: ImagemSkin3,
+    imageAlt: 'HIDRATANTE + VITAMINA C',
     carrinho: false,
     favorite: false,
   },
   {
     id: 4,
-    name: 'Óleo Essencial Natural de Melaleuca 10mL',
+    name: 'KIT SUN COM BLENDING FACIAL E SÉRUM CONTROL DE OLEOSIDADE',
     Preco: 'R$100,00',
     novoPreco: 'R$90,00',
-    imageSrc: 'https://img.freepik.com/psd-premium/maquete-de-frasco-cosmetico-de-vidro-ambar_358694-1009.jpg',
+    imageSrc: ImagemSkin4,
     imageAlt: 'Óleo Essencial Natural de Melaleuca 10mL',
     carrinho: false,
     favorite: false,
