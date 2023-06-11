@@ -11,7 +11,6 @@ import Root from "./routes/root";
 import ErrorPage from "./error-page";
 import Contact from "./routes/contact"
 import Skincare from './routes/SkinCare/Skincare';
-import Home from './routes/Home/Home';
 import Blog from './routes/Blog/Blog';
 import Aromaterapia from './routes/Aromaterapia/Aromaterapia';
 import SobreNos from './routes/SobreNos/SobreNos';

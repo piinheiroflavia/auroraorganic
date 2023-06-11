@@ -10,7 +10,7 @@ const FormNewsLetter = ({onsubmit}) => {
         const email =  event.target[1].value
         onsubmit ({name, email})
     }
-    return <div className="flex flex-col md:flex-row mt-24 overflow-hidden bg-aurora-fundoEscuro justify-around">
+    return <div className="flex flex-col md:flex-row mt-24 overflow-hidden  drop-shadow-md bg-aurora-fundoEscuro justify-around">
                 <div class="flex flex-col w-full md:w-1/2 px-20 ">
                     <form onsubmit={safeSubmit} className="flex flex-col px-14 w-full m-6  items-center justify-center ">
                         <input type="text" placeholder=" digite seu nome" className="py-2 m-3  w-full  dark:bg-dark-200 outline-none placeholder:text-gray-400 placeholder:dark:text-gray-600 placeholder:text-xs  focus:border-2 focus:border-alura-200 focus:dark:border-alura-100 invalid:focus:border-2  invalid:focus:border-red-600 invalid:focus:dark:border-2 invalid:focus:dark:border-red-600 "></input>

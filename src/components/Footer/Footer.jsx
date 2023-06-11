@@ -1,13 +1,11 @@
 import React from 'react';
-
 const Footer = () => {
     return( 
       <footer
-        class="bg-neutral-200 text-center text-neutral-600 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left">
-        
+      class="bg-neutral-200 text-center text-neutral-600 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left">
+       
         <div class="mx-6 py-10 text-center md:text-left">
           <div class="grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-
             <div class="">
               <h6
                 class="mb-4 flex items-center justify-center font-semibold uppercase md:justify-start text-gray-900">
@@ -26,6 +24,11 @@ const Footer = () => {
               <p class="mb-4">Política de Privacidade</p>
               <p class="mb-4">Política de Cookies</p>
               <p class="mb-4">Troca e Devolução</p>
+            </div>
+            <div class="">
+              <h6 class="mb-4 flex justify-center font-semibold uppercase md:justify-start text-gray-900">Produtos</h6>
+              <p class="mb-4">SkinCares</p>
+              <p class="mb-4">Óleos Essencias</p>
             </div>
 
             <div class="">

@@ -2,6 +2,9 @@ const express = require("express");
 const db = require("../db/models");
 const router = express.Router();
 
+
+
+
 router.post("/", async (req, res) => {
   const {  email_cliente, senha_cliente } = req.body;
   
@@ -12,7 +15,7 @@ router.post("/", async (req, res) => {
     if (!usuario) {
       return res.json({
         error: true,
-        message: "Usuário não encontrado.",
+        message: "Usuário Não Encontrado.",
       });
     }
 
@@ -20,7 +23,7 @@ router.post("/", async (req, res) => {
      if (usuario.senha_cliente != senha_cliente) {
       return res.json({
         error: true,
-        message: "Senha incorreta.",
+        message: "Senha Incorreta.",
       });
     }
 
@@ -35,7 +38,7 @@ router.post("/", async (req, res) => {
   } catch (error) {
     return res.json({
       error: true,
-      message: "Erro ao realizar o login.",
+      message: "Erro ao Realizar o Login.",
       data: error,
       
     });

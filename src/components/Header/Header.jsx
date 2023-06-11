@@ -1,6 +1,6 @@
 //importando o icone
 import products from "../../../list.json"
-import {UserCircleIcon, ShoppingCartIcon, XMarkIcon} from "@heroicons/react/24/solid"
+import {UserCircleIcon, ShoppingCartIcon, XMarkIcon, Bars3Icon} from "@heroicons/react/24/solid"
 import ToggleTheme from "../ToggleTheme/ToggleTheme";
 import imagemLogo from "../../assets/imgs/logoA.jpg"
 import {Carousel, initTE, } from "tw-elements";
@@ -9,6 +9,7 @@ import { Menu } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import {useEffect} from "react";
+import Navbar from "../Navbar/Navbar";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -20,7 +21,10 @@ function classNames(...classes) {
     const [open, setOpen] = useState(true)
 
       useEffect(() => {
+        const navb = document.getElementById('navb');
         const navbar = document.getElementById('navbar1');
+        const responsNavbar = document.getElementById('responsNavbar');
+
         if (navbar) {
           function isScreenSizeLessThan538() {
             return window.innerWidth < 678;
@@ -28,76 +32,84 @@ function classNames(...classes) {
     
           if (isScreenSizeLessThan538()) {
             console.log("Tela menor que 538 pixels.");
+            navb.style.justifyContent = "start"
             navbar.style.display = "none";
             console.log("esconder");
+
           } else {
             console.log("Tela maior ou igual a 538 pixels.");
             console.log("mostrar");
+            responsNavbar.style.display = "none"
             navbar.style.display = " ";
           }
         }
       }, []);
       
-
+      function removerProdutoDoCarrinho(productId) {
+        const novoCarrinho = carrinho.filter((product) => product.id !== productId);
+        setCarrinho(novoCarrinho);
+      }
+      
     return <div >
         <div className="flex h-5  bg-aurora-fundoBody mx-auto max-w-7xl items-center justify-center p-3 lg:px-8 ">
              <p className="text-xs sm:text-base">20% OFF + frete grátis acima de R$99 com o cupom PRIMEIRACOMPRA</p>
         </div>
-        <div className="flex h-15 bg-aurora-fundoEscuro dark:bg-aurora-100 justify-between items-center px-5">
-            <a  href="/auroraorganic"><img src={imagemLogo} alt="Banner" className="flex h-16"/></a>
+        <div id="navb" className="flex h-15 bg-aurora-fundoEscuro dark:bg-aurora-100 justify-between items-center px-5">
+            <a  href="/auroraorganic"><img src={imagemLogo} alt="Banner" className="flex h-16 m-1"/></a>
+            <Bars3Icon id="responsNavbar"  className="h-8 ms-16 text-gray-50 hidden sm:block cursor-pointer"aria-hidden="true"></Bars3Icon>
             <div className="flex ">
-          <Menu as="div" className="relative inline-block text-left">
-            <div>
-              {/* adicinar o nome do usuário */}
-              {/* {user ? <p>Olá {user}</p>:""} */}
-              <Menu.Button className="inline-flex w-full ">
-                <UserCircleIcon className="h-7 mx-6 text-gray-100 hidden sm:block cursor-pointer"aria-hidden="true"></UserCircleIcon>
-              </Menu.Button>
-            </div>
+            <Menu as="div" className="relative inline-block text-left">
+            {/* <Navbar/> */}
+ 
+                {/* adicinar o nome do usuário */}
+                {/* {user ? <p>Olá {user}</p>:""} */}
+                <Menu.Button className="inline-flex w-full ">
+                  <UserCircleIcon className="h-7 mx-6 mt-1 text-gray-100 hidden sm:block cursor-pointer"aria-hidden="true"></UserCircleIcon>
+                </Menu.Button>
 
-            <Transition
-              as={Fragment}
-              enter="transition ease-out duration-100"
-              enterFrom="transform opacity-0 scale-95"
-              enterTo="transform opacity-100 scale-100"
-              leave="transition ease-in duration-75"
-              leaveFrom="transform opacity-100 scale-100"
-              leaveTo="transform opacity-0 scale-95"
-            >
-              <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                <div className="py-1">
-                  <Menu.Item>
-                    {({ active }) => (
-                      <a
-                        href="/auroraorganic/login"
-                        className={classNames(
-                          active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                          'block px-4 py-2 text-sm'
-                        )}
-                      >
-                        Login
-                      </a>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <a
-                        href="/auroraorganic/cadastro"
-                        className={classNames(
-                          active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                          'block px-4 py-2 text-sm'
-                        )}
-                      >
-                        Cadastre-se
-                      </a>
-                    )}
-                  </Menu.Item>
-                  
-                </div>
-              </Menu.Items>
-            </Transition>
-          </Menu>
-
+              <Transition
+                as={Fragment}
+                enter="transition ease-out duration-100"
+                enterFrom="transform opacity-0 scale-95"
+                enterTo="transform opacity-100 scale-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="transform opacity-100 scale-100"
+                leaveTo="transform opacity-0 scale-95"
+              >
+                <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <div className="py-1">
+                    <Menu.Item>
+                      {({ active }) => (
+                        <a
+                          href="/auroraorganic/login"
+                          className={classNames(
+                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                            'block px-4 py-2 text-sm'
+                          )}
+                        >
+                          Login
+                        </a>
+                      )}
+                    </Menu.Item>
+                    <Menu.Item>
+                      {({ active }) => (
+                        <a
+                          href="/auroraorganic/cadastro"
+                          className={classNames(
+                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                            'block px-4 py-2 text-sm'
+                          )}
+                        >
+                          Cadastre-se
+                        </a>
+                      )}
+                    </Menu.Item>
+                    
+                  </div>
+                </Menu.Items>
+              </Transition>              
+            </Menu>
+                              
           <button type="button"className="rounded-md text-gray-300 hover:text-white "
             onClick={() => setOpen(true)}>
               <ShoppingCartIcon  className="h-7 text-gray-100 hidden sm:block cursor-pointer" aria-hidden="true"/>
@@ -183,6 +195,7 @@ function classNames(...classes) {
                                           <button
                                             type="button"
                                             className="font-medium text-gray-900 hover:text-indigo-900"
+                                            onClick={() => removerProdutoDoCarrinho(product.id)}
                                           >
                                             Remover
                                           </button>
@@ -204,9 +217,9 @@ function classNames(...classes) {
                           <div className="mt-6">
                             <a
                               href="#"
-                              className="flex max-w-lg w-full justify-center items-center relative mt-8 p-2 bg-aurora-fundoEscuro font-medium text-gray-50 hover:bg-orange-700 hover:text-gray-50"
+                              className=" flex max-w-lg w-full justify-center items-center relative mt-8 p-2 bg-aurora-fundoEscuro font-medium text-gray-50 hover:bg-orange-700 hover:text-gray-50"
                             >
-                              Checkout
+                              Finalizar Pedido
                             </a>
                           </div>
                           <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
@@ -226,11 +239,10 @@ function classNames(...classes) {
             </div>
           </Dialog>
         </Transition.Root>                
-          
-          
-            </div>
+          </div>
         </div>
-        <div  className=" bg-aurora-fundoEscuro px-4  ">
+
+        <div  className="drop-shadow-md bg-aurora-fundoEscuro px-4  ">
           <div id="navbar1" className=" flex h-8 justify-center items-center">
             <a href="/auroraorganic" className="text-gray-100 text-base mx-5 sm:block"> Home </a>
             <a href="/auroraorganic/skincare" className="text-gray-100 text-base mx-5 sm:block"> SkinCare </a>
