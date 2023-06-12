@@ -7,6 +7,7 @@ import CardBlog from "../../components/CardBlog/CardBlog";
 import Footer from "../../components/Footer/Footer";
 import InfoProduct from "../../components/InfoProduct/InfoProduct";
 import {ArrowSmallRightIcon} from "@heroicons/react/24/solid"
+import ButtonInf from "../../components/ButtonInf/ButtonInf";
 
 const Home = () => {
     return (
@@ -93,6 +94,8 @@ const Home = () => {
           </span> 
           dia a dia .
         </blockquote>
+        <br className="" />
+        <ButtonInf />
         <FormNewsLetter/>
         <Footer/>
         

@@ -1,17 +1,19 @@
-import {PlusIcon} from "@heroicons/react/24/solid"
-import { Carousel } from "@material-tailwind/react";
+import {PlusIcon,  XMarkIcon} from "@heroicons/react/24/solid"
 import { Dialog, RadioGroup, Transition } from '@headlessui/react'
-import { XMarkIcon } from '@heroicons/react/24/outline'
-import { StarIcon } from '@heroicons/react/20/solid'
 import { Fragment, useState } from 'react'
 import { Rating } from "@material-tailwind/react";
+import ImagemArom1 from '../../assets/imgs/arom1.png';
+import ImagemArom2 from '../../assets/imgs/arom2.png';
+import ImagemArom3 from '../../assets/imgs/arom3.png';
+import ImagemArom4 from '../../assets/imgs/arom4.png';
+
 const products = [
     {
       id: 1,
       name: 'Óleo Essencial Natural de Jojoba 10mL',
       Preco: 'R$70,00',
       novoPreco: 'R$40,00',
-      imageSrc: 'https://img.freepik.com/fotos-gratis/composicao-natural-do-oleo-de-jojoba_23-2149047770.jpg?w=360&t=st=1682546786~exp=1682547386~hmac=7f32ee0d4fdf005d923f6e33334607f4ef9d0a008b2a60c0d2673e100e01bdce',
+      imageSrc: ImagemArom1,
       imageAlt: 'Óleo Essencial Natural de Jojoba 10mL',
       carrinho: true,
       favorite: false,
@@ -21,7 +23,7 @@ const products = [
       name: 'Óleo Essencial Natural de Jojoba 10mL',
       Preco: 'R$80,00',
       novoPreco: 'R$60,00',
-      imageSrc: 'https://img.freepik.com/fotos-premium/frasco-de-vidro-marrom-com-uma-pipeta-em-um-podio-de-concreto-em-um-fundo-de-madeira-flutuante-fundo-marrom-copia-espaco-conceito-cosmetico-natural_286227-2417.jpg?w=740',
+      imageSrc:ImagemArom2,
       imageAlt: 'Óleo Essencial Natural de Jojoba 10mL',
       carrinho: false,
       favorite: false,
@@ -31,7 +33,7 @@ const products = [
       name: 'Óleo Essencial Natural de Argan 10mL',
       Preco: 'R$80,00',
       novoPreco: 'R$50,00',
-      imageSrc: 'https://img.freepik.com/fotos-gratis/variedade-de-garrafas-de-oleo-de-cannabis-natural_23-2148977771.jpg?w=360&t=st=1682546910~exp=1682547510~hmac=086356d08de43d87063f7b7e6124cb609b56acf04dfd2cfd226a600df7c77bca',
+      imageSrc: ImagemArom3,
       imageAlt: 'Óleo Essencial Natural de Argan 10mL',
       carrinho: false,
       favorite: false,
@@ -41,7 +43,7 @@ const products = [
       name: 'Óleo Essencial Natural de Argan 10mL',
       Preco: 'R$100,00',
       novoPreco: 'R$90,00',
-      imageSrc: 'https://img.freepik.com/fotos-gratis/variedade-de-conta-gotas-de-oleo-de-argan-natural_23-2149016625.jpg?w=360&t=st=1682547041~exp=1682547641~hmac=a2f1979a9f91d2baaffbd1a90a0a6da4a6a392eccaa682c445cb46ff271b53d1',
+      imageSrc: ImagemArom4,
       imageAlt: 'Óleo Essencial Natural de Argan 10mL',
       carrinho: false,
       favorite: false,
@@ -230,6 +232,7 @@ const products = [
                                   <a href={product.carrinho} id="addCarrinhoCards"  
                                   onMouseOver={addCarrinhoCard}
                                   onMouseOut={outCarrinhoCard} 
+                                  onClick={() => adicionarProdutoAoCarrinho(product.id)}
                                   className="flex justify-center items-end relative mt-8 mb-2 p-2 bg-aurora-fundoEscuro font-medium text-gray-50 hover:text-gray-50"
                                   >{isMouseOver ? <PlusIcon className="animate-pulse h-6 text-gray-50 hidden sm:block cursor-pointer" /> : 'Add Carrinho'}</a>
                                 </section>

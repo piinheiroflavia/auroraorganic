@@ -25,6 +25,7 @@ const sendmsg = async (e) => {
             'Content-Type': 'application/json'
         }
     };
+
     await axios.post('http://localhost:9080/login', data, headers)
     .then((response) => {
       setMessage(response.data.message);
@@ -50,12 +51,19 @@ const valorinput = e => {
         setData({...data,[e.target.id]: e.target.value});   
 };
 
+
 //alert mensagem do banco
 const acionarEnviar = () => { 
+
+    //Armazene os dados no localStorage
+    localStorage.setItem('email', data.email_cliente);
+    
     let msgAlert = document.getElementById('msgBoxAlert');
     let titleCad = document.getElementById("titleCad");
     msgAlert.style.display = " block"; 
     titleCad.style.marginTop = "0px"
+
+    
 }
 //valid label email
 const upLabelEmail = () => {
