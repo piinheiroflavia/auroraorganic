@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "KIT ÓLEO DE ROSA MOSQUETA E BALM CB2",
+    "Preco": "R$70,00",
+    "novoPreco": "R$40,00",
+    "imageSrc": "../src/assets/imgs/skin1.png",
+    "imageAlt": "KIT ÓLEO DE ROSA MOSQUETA E BALM CB2"
+  },
+  {
+    "id": 2,
+    "name": "SOLUÇÃO ÁCIDO SALICÍLICO, REDUZIR CRAVOS E ESPINHAS",
+    "Preco": "R$80,00",
+    "novoPreco": "R$60,00",
+    "imageSrc": "../src/assets/imgs/skin2.png",
+    "imageAlt": "SOLUÇÃO ÁCIDO SALICÍLICO, REDUZIR CRAVOS E ESPINHAS"
+  },
+  {
+    "id": 3,
+    "name": "HIDRATANTE + VITAMINA C, ANTIOXIDANTE CORPORAL",
+    "Preco": "R$80,00",
+    "novoPreco": "R$50,00",
+    "imageSrc": "../src/assets/imgs/skin3.png",
+    "imageAlt": "HIDRATANTE + VITAMINA C"
+  },
+  {
+    "id": 4,
+    "name": "KIT SUN COM BLENDING FACIAL E SÉRUM CONTROL DE OLEOSIDADE",
+    "Preco": "R$100,00",
+    "novoPreco": "R$90,00",
+    "imageSrc": "../src/assets/imgs/skin4.png",
+    "imageAlt": "KIT SUN COM BLENDING FACIAL E SÉRUM CONTROL DE OLEOSIDADE"
+  }
+]
