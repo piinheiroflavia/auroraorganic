@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
     }
 
     // Verifique se a senha fornecida coincide com a senha armazenada no banco de dados
-     if (usuario.senha_cliente != senha_cliente1) {
+     if (usuario.senha_cliente != senha_cliente) {
       return res.json({
         error: true,
         message: "Senha Incorreta.",
@@ -33,14 +33,16 @@ router.post("/", async (req, res) => {
     // Se a autenticação for bem-sucedida, você pode retornar uma resposta com sucesso
     return res.json({
       error: false,
-      message: "Seja Bem vindo, boas compras!",
+      message: "seja bem vindo"  ,
       data: usuario,
+      
     });
   } catch (error) {
     return res.json({
       error: true,
       message: "Erro ao Realizar o Login.",
       data: error,
+      
     });
   }
 });

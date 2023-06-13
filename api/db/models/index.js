@@ -19,7 +19,7 @@ if (config.use_env_variable) {
 try{
   console.log("conexao com o banco de dados realizado com sucesso!")
 } catch(erro){
-  console.log("erro: conexao com o banco de dados  nao realizado com sucesso!", error);
+  console.log("erro: conexao com o banco de dados  nao realizado com sucesso!", erro);
 }
 
 fs
