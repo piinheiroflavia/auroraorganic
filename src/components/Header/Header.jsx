@@ -1,6 +1,5 @@
 //importando o icone
-import products from "../../../list.json"
-import {UserCircleIcon, ShoppingCartIcon, XMarkIcon, Bars3Icon} from "@heroicons/react/24/solid"
+import {UserCircleIcon, Bars3Icon} from "@heroicons/react/24/solid"
 import ToggleTheme from "../ToggleTheme/ToggleTheme";
 import imagemLogo from "../../assets/imgs/logoA.jpg"
 import {Carousel, initTE, } from "tw-elements";
@@ -10,13 +9,13 @@ import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import {useEffect} from "react";
 import Navbar from "../Navbar/Navbar";
-import { setItem } from "localforage";
-import Carrinho from "../Carrinho/Carrinh";
+//import { setItem } from "localforage";
+import Carrinho from "../Carrinho/Carrinho";
+import Teste from "../Teste/Testando"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 } 
-  // initTE({ Dropdown, Ripple });
 
 
   const Header = () => {
@@ -47,10 +46,10 @@ function classNames(...classes) {
         }
       }, []);
       
-      function removerProdutoDoCarrinho(productId) {
-        const novoCarrinho = carrinho.filter((product) => product.id !== productId);
-        setCarrinho(novoCarrinho);
-      }
+      // function removerProdutoDoCarrinho(productId) {
+      //   const novoCarrinho = carrinho.filter((product) => product.id !== productId);
+      //   setCarrinho(novoCarrinho);
+      // }
       
       const [userEmail, setUserEmail] = useState('');
 
@@ -124,6 +123,8 @@ function classNames(...classes) {
           
           {/* CARRINHO   */}
           <Carrinho />
+          <Teste/>
+          
              
         <Bars3Icon id="responsNavbar"  className="h-8 ms-16 text-gray-50 hidden sm:block cursor-pointer"aria-hidden="true"><Navbar></Navbar></Bars3Icon>                        
           </div>

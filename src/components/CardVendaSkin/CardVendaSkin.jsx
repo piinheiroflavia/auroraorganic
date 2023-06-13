@@ -9,69 +9,83 @@ import ImagemSkin2 from '../../assets/imgs/skin2.png';
 import ImagemSkin3 from '../../assets/imgs/skin3.png';
 import ImagemSkin4 from '../../assets/imgs/skin4.png';
 
-const products = [
-  {
-    id: 1,
-    name: 'KIT ÓLEO DE ROSA MOSQUETA E BALM CB2',
-    Preco: 'R$70,00',
-    novoPreco: 'R$40,00',
-    imageSrc: ImagemSkin1,
-    imageAlt: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
-    carrinho: true,
-    favorite: false,
-  },
-  {
-    id: 2,
-    name: 'SOLUÇÃO ÁCIDO SALICÍLICO, REDUZIR CRAVOS E ESPINHAS',
-    Preco: 'R$80,00',
-    novoPreco: 'R$60,00',
-    imageSrc: ImagemSkin2,
-    imageAlt: 'Óleo Essencial Natural de Melaleuca 10mL',
-    carrinho: false,
-    favorite: false,
-  },
-  {
-    id: 3,
-    name: 'HIDRATANTE + VITAMINA C, ANTIOXIDANTE CORPORAL',
-    Preco: 'R$80,00',
-    novoPreco: 'R$50,00',
-    imageSrc: ImagemSkin3,
-    imageAlt: 'HIDRATANTE + VITAMINA C',
-    carrinho: false,
-    favorite: false,
-  },
-  {
-    id: 4,
-    name: 'KIT SUN COM BLENDING FACIAL E SÉRUM CONTROL DE OLEOSIDADE',
-    Preco: 'R$100,00',
-    novoPreco: 'R$90,00',
-    imageSrc: ImagemSkin4,
-    imageAlt: 'Óleo Essencial Natural de Melaleuca 10mL',
-    carrinho: false,
-    favorite: false,
-  },
-]
 
-  function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-  }
-  
-  export default function Example() {
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
+
+export default function Example({ produto }) {
+    const [produtos, setProdutos] = useState ([
+      {
+        id: 1,
+        name: 'KIT ÓLEO DE ROSA MOSQUETA E BALM CB2',
+        Preco: 'R$70,00',
+        novoPreco: 'R$40,00',
+        imageSrc: ImagemSkin1,
+        imageAlt: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
+        carrinho: true,
+        favorite: false,
+      },
+      {
+        id: 2,
+        name: 'SOLUÇÃO ÁCIDO SALICÍLICO, REDUZIR CRAVOS E ESPINHAS',
+        Preco: 'R$80,00',
+        novoPreco: 'R$60,00',
+        imageSrc: ImagemSkin2,
+        imageAlt: 'Óleo Essencial Natural de Melaleuca 10mL',
+        carrinho: true,
+        favorite: false,
+      },
+      {
+        id: 3,
+        name: 'HIDRATANTE + VITAMINA C, ANTIOXIDANTE CORPORAL',
+        Preco: 'R$80,00',
+        novoPreco: 'R$50,00',
+        imageSrc: ImagemSkin3,
+        imageAlt: 'HIDRATANTE + VITAMINA C',
+        carrinho: true,
+        favorite: false,
+      },
+      {
+        id: 4,
+        name: 'KIT SUN COM BLENDING FACIAL E SÉRUM CONTROL DE OLEOSIDADE',
+        Preco: 'R$100,00',
+        novoPreco: 'R$90,00',
+        imageSrc: ImagemSkin4,
+        imageAlt: 'Óleo Essencial Natural de Melaleuca 10mL',
+        carrinho: true,
+        favorite: false,
+      },
+    ])
 
     const [open, setOpen] = useState(false)
     const [selectedProductId, setSelectedProductId] = useState(null);
-
-    // Função para definir o ID do produto selecionado
-    const handleProductSelect = (productId) => {
-      setSelectedProductId(productId);
+    const [produtosNoCarrinho, setProdutosNoCarrinho] = useState([]);
+    
+    const adicionarAoCarrinho = (produtoId) => {
+      const produto = produtos.find((p) => p.id === produtoId);
+      
+      if (produto) {
+        setProdutosNoCarrinho((prevProdutosNoCarrinho) => [
+          ...prevProdutosNoCarrinho,
+          produto,
+        ]);
+      }
     };
-    // Encontre o produto selecionado com base no ID
-    const selectedProduct = products.find((product) => product.id === selectedProductId);
 
+    const selectedProduct = produtos.find((product) => product.id === selectedProductId);
+    //const addCarrinhoCards = document.getElementById("addCarrinhoCards")
+    const handleClickAdicionar = () => {
+      adicionarAoCarrinho(produtosNoCarrinho.id);
+      alert('adiciona')
 
+      
+    };
+
+    
 
     const [isMouseOver, setIsMouseOver] = useState(false);
-    const addCarrinhoCards = document.getElementById("addCarrinhoCards")
+    
     //passar o mouse
     function addCarrinhoCard(event) {
       setIsMouseOver(true);
@@ -87,7 +101,7 @@ const products = [
         <div className=" mx-auto max-w-2xl px-6 py-1 sm:px-6 sm:py-1 lg:max-w-7xl lg:px-8">
       
           <div className=" grid grid-cols-1 gap-x-6 gap-y-13 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8  border-t border-gray-200 pt-2 sm:mt-16 sm:pt-12 lg:mx-0">
-            {products.map((product) => (
+            {produtos.map((product) => (
               <a key={product.id} href={product.href} className="group py-4 px-6 rounded-lg bg-aurora-branco">
                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
                   <img
@@ -200,11 +214,11 @@ const products = [
                       >
                         <Dialog.Panel className="flex w-full transform text-left text-base transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl">
                           <div className="relative flex w-full items-center overflow-hidden bg-white px-4 pb-8 pt-14 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
-                          {selectedProduct && (
+                          {/* {selectedProduct && (
                               <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
                                 {selectedProduct.name}
                               </Dialog.Title>
-                            )}
+                            )} */}
                             <button
                               type="button"
                               className="absolute right-4 top-4 text-gray-400 hover:text-gray-500 sm:right-6 sm:top-8 md:right-6 md:top-6 lg:right-8 lg:top-8"
@@ -230,11 +244,16 @@ const products = [
                                   <Rating className="flex my-4 justify-start"/>
                                   <p className="mt-2 text-xs font-medium text-gray-900"><s>{product.Preco}</s></p>
                                   <p className="text-2xl text-gray-900">{product.novoPreco}</p>
+                                  
                                   <a href={product.carrinho} id="addCarrinhoCards"  
                                   onMouseOver={addCarrinhoCard}
                                   onMouseOut={outCarrinhoCard} 
+                                  onClick={handleClickAdicionar}
                                   className="flex justify-center items-end relative mt-8 mb-2 p-2 bg-aurora-fundoEscuro font-medium text-gray-50 hover:text-gray-50"
                                   >{isMouseOver ? <PlusIcon className="animate-pulse h-6 text-gray-50 hidden sm:block cursor-pointer" /> : 'Add Carrinho'}</a>
+                                  <br></br>
+                                  
+                                
                                 </section>
                               </div>
                             </div>
@@ -254,23 +273,3 @@ const products = [
       </div>
     )
   }
-
-  // function Favorite({ product }) {
-  //   // yes, this is a `let` for later
-  //   let favorite = product.favorite;
-  //   return (
-  //     <Form method="post">
-  //       <button
-  //         name="favorite"
-  //         value={favorite ? "false" : "true"}
-  //         aria-label={
-  //           favorite
-  //             ? "Remove from favorites"
-  //             : "Add to favorites"
-  //         }
-  //       >
-  //         {favorite ? "★" : "☆"}
-  //       </button>
-  //     </Form>
-  //   );
-  // }

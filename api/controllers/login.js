@@ -6,7 +6,8 @@ const router = express.Router();
 
 
 router.post("/", async (req, res) => {
-  const {  email_cliente, senha_cliente1 } = req.body;
+  const { nome_cliente ,email_cliente, senha_cliente1 } = req.body;
+  console.log("Nome recebido:", nome_cliente);
   console.log("Email recebido:", email_cliente);
   console.log("Senha recebida:", senha_cliente1);
 

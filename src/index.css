@@ -14,5 +14,7 @@
   #msgBoxAlert{
     display: none;
   } 
-
+  #espaceHome{
+    margin-bottom: -30px;
+  }
 }

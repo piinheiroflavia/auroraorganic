@@ -5,16 +5,71 @@ import CardVenda from "../../components/CardVendaSkin/CardVendaSkin"
 import CardVendArom from "../../components/CardVendArom/CardVendArom"
 import CardBlog from "../../components/CardBlog/CardBlog";
 import Footer from "../../components/Footer/Footer";
-import InfoProduct from "../../components/InfoProduct/InfoProduct";
-import {ArrowSmallRightIcon} from "@heroicons/react/24/solid"
+import {ArrowSmallRightIcon } from "@heroicons/react/24/solid"
+import { TruckIcon, RocketLaunchIcon,  TagIcon, ShoppingBagIcon } from "@heroicons/react/24/outline"
 import ButtonInf from "../../components/ButtonInf/ButtonInf";
 
 const Home = () => {
     return (
       <>
         <BannerTelaInical/>
-        <h2 className="mt-40 mb-20 text-2xl grid justify-items-center text-center tracking-tight text-gray-900 sm:text-4xl font-medium">VIDA DE ALTA PERFORMANCE</h2>
-        <h2 className="ml-20 mt-40 mb-0 text-slate-950 text-transform: uppercase text-2xl font-semibold">Os Mais Procurados de Pele Momento</h2>
+        <div className="grid mt-10  grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mx-14 p-5">
+          <div className="flex  relative mb-12 px-2 lg:mb-0">
+              <div className="mb-2 flex justify-center">
+                <span className="text-primary">
+                  <TagIcon className="font-extrabold w-16 h-14  text-gray-950"/>
+                </span>
+              </div>
+              <div className="w-auto">
+                <h5 className="mx-9 mb-2 font-bold text-primary text-start">COMPRA SEGURA</h5>
+                <h6 className="mx-9 font-normal dark:text-neutral-50 text-start">Ambiente protegido </h6>
+              </div>
+            <div
+              className="absolute right-4 top-0 hidden h-full min-h-[1em] w-px self-stretch border-t-0 bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-25 dark:opacity-100 lg:block"></div>
+          </div>
+          
+          <div className="flex  relative mb-12 px-2 lg:mb-0">
+              <div className="mb-2 flex justify-center">
+                <span className="text-primary"> 
+                     <TruckIcon className="font-extrabold w-16 h-14  text-gray-950"/>
+                </span>
+              </div>
+              <div className="w-auto">
+                <h5 className="mx-9 mb-2 font-bold text-primary text-start">Frete Grátis </h5>
+                <h6 className="mx-9 font-normal dark:text-neutral-50 text-start">Acima de R$99 reais </h6>
+              </div>
+            <div
+              className="absolute right-4 top-0 hidden h-full min-h-[1em] w-px self-stretch border-t-0 bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-25 dark:opacity-100 lg:block"></div>
+          </div>
+
+          <div className="flex  relative mb-12 px-2 lg:mb-0">
+              <div className="mb-2 flex justify-center">
+                <span className="text-primary">
+                  <ShoppingBagIcon className="font-extrabold w-16 h-14  text-gray-950"/>
+                </span>
+              </div>
+              <div className="w-auto">
+                <h5 className="mx-9 mb-2 font-bold text-primary text-start">DEVOLUÇÃO FÁCIL</h5>
+                <h6 className="mx-9 font-normal dark:text-neutral-50 text-start">Até 30 dias para troca</h6>
+              </div>
+            <div
+              className="absolute right-4 top-0 hidden h-full min-h-[1em] w-px self-stretch border-t-0 bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-25 dark:opacity-100 lg:block"></div>
+          </div>
+
+          <div className="flex  relative mb-12 px-2 lg:mb-0">
+              <div className="mb-2 flex justify-center">
+                <span className="text-primary">
+                  <RocketLaunchIcon className="font-extrabold w-16 h-14  text-gray-950"/>
+                </span>
+              </div>
+              <div className="w-auto">
+                <h5 className="mx-5  mb-2 font-bold text-primary text-start">DESCONTO PROGRESSIVO</h5>
+                <h6 className="mx-5 font-normal dark:text-neutral-50 text-start">Em até toda compra</h6>
+              </div>
+          </div>
+          </div>
+        <h2 className="mt-24 mb-16 text-2xl grid justify-items-center text-center tracking-tight text-gray-900 sm:text-4xl font-medium">VIDA DE ALTA PERFORMANCE</h2>
+        <h2 className="ml-20 mt-28 mb-0 text-slate-950 text-transform: uppercase text-2xl font-semibold">Os Mais Procurados de Pele Momento</h2>
         <CardVenda/>
         <br></br><br></br>
         <h2 className="ml-20 mt-5 mb-0 text-slate-950 text-transform: uppercase text-2xl font-semibold">Os Aromas Mais Procurados do Momento</h2>
@@ -87,16 +142,15 @@ const Home = () => {
         </div>
         <CardBlog />
       
-        <blockquote className="my-40 text-3xl font-semibold italic text-center text-gray-900 sm:text-4xl">
+        <blockquote className="mt-40 text-3xl font-semibold italic text-center text-gray-900 sm:text-4xl">
         Mudando o mundo começando pelo  
           <span className="mx-3 before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-orange-700 relative inline-block">
             <span className="mx-1 relative text-white">  nosso  </span>
           </span> 
           dia a dia .
         </blockquote>
-        <br className="" />
-        <ButtonInf />
-        <FormNewsLetter/>
+        {/* <ButtonInf /> */}
+        <FormNewsLetter id="espaceHome"/>
         <Footer/>
         
       </>

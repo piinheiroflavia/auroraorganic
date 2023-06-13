@@ -33,7 +33,8 @@ const sendmsg = async (e) => {
       setData({
         nome_cliente : '',
         email_cliente : '',
-        senha_cliente : ''
+        senha_cliente : '',
+        confSenha : '',
     });
 
     })
@@ -125,7 +126,7 @@ const validaSenha = () => {
 let confSenha = document.getElementById("confSenha");
 const validaConfSenha = () => {
 
-    console.log(confSenha.value);
+
 
     if (confSenha.value === senha.value){
         confSenha.style.borderBottomColor = '#008000';
