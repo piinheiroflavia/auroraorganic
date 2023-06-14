@@ -1,33 +1,35 @@
 'use strict';
-var DataTypes = require('sequelize/lib/data-types');
-/** @type {import('sequelize-cli').Migration} */
+const { Model,DataTypes  } = require('sequelize');
+const listaJson = require('../../../listProdutos.json');
 
-const listaJson = require('../../../listArom.json');
-// Chame o método loadFromJSON para carregar os dados no banco
-const produtoArom = require('../models/produtoArom');
-produtoArom.loadFromJSON(listaJson);
+
+/** @type {import('sequelize-cli').Migration} */
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('produtoArom', {
-      id_produtoArom: {
+    const product = require('../models/product')(queryInterface.sequelize, DataTypes);
+    await queryInterface.createTable('products', {
+      id_produto: {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name_produtoArom: {
+      name_produto: {
         type: Sequelize.STRING
       },
       Preco: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       novoPreco: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       imageSrc: {
         type: Sequelize.STRING
       },
       imageAlt: {
+        type: Sequelize.STRING
+      },
+      categoria: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -39,10 +41,11 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
+    // Carregar os dados do JSON para a tabela
+    await product.loadFromJSON(listaJson);
   },
 
-  
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('produtoArom');
+    await queryInterface.dropTable('produtos');
   }
 };

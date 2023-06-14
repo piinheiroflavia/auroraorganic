@@ -10,25 +10,28 @@ produtosSkin.loadFromJSON(listaJson);
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('produtosSkin', {
-      id: {
+      id_produto: {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name_produtoSkin: {
+      name_produto: {
         type: Sequelize.STRING
       },
       Preco: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       novoPreco: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       imageSrc: {
         type: Sequelize.STRING
       },
       imageAlt: {
         type: Sequelize.STRING
+      },
+      categoria: {
+        type: DataTypes.STRING
       },
       createdAt: {
         allowNull: false,

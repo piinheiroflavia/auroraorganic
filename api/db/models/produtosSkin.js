@@ -14,29 +14,33 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   produtosSkin.init({
-    id_produtosSkin: {
+    id_produto: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    name_produtoSkin: {
+    name_produto: {
       allowNull: false,
       type: DataTypes.STRING
     },
     Preco: {
       allowNull: false,
-      type: DataTypes.STRING
+      type: DataTypes.INTEGER
     },
     novoPreco: {
       allowNull: false,
-      type: DataTypes.STRING
+      type: DataTypes.INTEGER
     },
     imageSrc: {
       allowNull: false,
       type: DataTypes.STRING
     },
     imageAlt: {
+      allowNull: false,
+      type: DataTypes.STRING
+    },
+    categoria: {
       allowNull: false,
       type: DataTypes.STRING
     }

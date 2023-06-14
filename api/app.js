@@ -15,14 +15,16 @@ app.use((req, res, next) => {
 // Importar o controller
 const cadastro = require("./controllers/cadastro.js");
 const login = require("./controllers/login.js");
-const produtosSkinController = require("./controllers/produtosSkinController.js");
-const produtoAromController = require("./controllers/produtoAromControllers.js");
+//const produtosSkinController = require("./controllers/produtosSkinController.js");
+const productController = require("./controllers/productController.js");
+
 
 //passa o endpoint
 app.use('/cadastro', cadastro);
 app.use('/login', login);
-app.use("/produtoSkin", produtosSkinController);
-app.use("/produtoArom", produtoAromController);
+//app.use("/produtoSkin", produtosSkinController);
+app.use("/product", productController);
+
 
 app.listen(9080, () => {
   console.log("Servidor iniciado na porta 9080: http://localhost:9080");

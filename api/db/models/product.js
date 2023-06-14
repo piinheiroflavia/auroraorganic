@@ -1,9 +1,9 @@
 'use strict';
 const { Model,DataTypes  } = require('sequelize');
-const listaJson = require('../../../listArom.json');
+const listaJson = require('../../../listProdutos.json');
 
 module.exports = (sequelize, DataTypes) => {
-  class produtoArom extends Model {
+  class product extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,24 +13,24 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  produtoArom.init({
-    id_produtoArom:     {
+  product.init({
+    id_produto: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    name_produtoArom: {
+    name_produto: {
       allowNull: false,
       type: DataTypes.STRING
     },
     Preco: {
       allowNull: false,
-      type: DataTypes.STRING
+      type: DataTypes.INTEGER
     },
     novoPreco: {
       allowNull: false,
-      type: DataTypes.STRING
+      type: DataTypes.INTEGER
     },
     imageSrc: {
       allowNull: false,
@@ -39,15 +39,19 @@ module.exports = (sequelize, DataTypes) => {
     imageAlt: {
       allowNull: false,
       type: DataTypes.STRING
+    },
+    categoria: {
+      allowNull: false,
+      type: DataTypes.STRING
     }
     
   }, {
     sequelize,
-    modelName: 'produtoArom',
+    modelName: 'product',
   });
 
 
-  produtoArom.loadFromJSON = async function(jsonData) {
+  product.loadFromJSON = async function(jsonData) {
     try {
       await this.bulkCreate(jsonData);
       console.log('Dados carregados com sucesso.');
@@ -56,8 +60,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
 // Chamar a função para carregar os dados ao iniciar o modelo
-  produtoArom.loadFromJSON(listaJson); 
+  product.loadFromJSON(listaJson); 
 
 
-  return produtoArom;
+  return product;
 };

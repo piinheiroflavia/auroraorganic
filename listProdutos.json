@@ -1,7 +1,7 @@
 [
   {
-    "id": 1,
-    "name": "KIT ÓLEO DE ROSA MOSQUETA E BALM CB2",
+    "id_produto": 1,
+    "name_produto": "KIT ÓLEO DE ROSA MOSQUETA E BALM CB2",
     "Preco": 70.00,
     "novoPreco": 40.00,
     "imageSrc": "../src/assets/imgs/skin1.png",
@@ -9,8 +9,8 @@
     "Categoria": "skin"
   },
   {
-    "id": 2,
-    "name": "SOLUÇÃO ÁCIDO SALICÍLICO, REDUZIR CRAVOS E ESPINHAS",
+    "id_produto": 2,
+    "name_produto": "SOLUÇÃO ÁCIDO SALICÍLICO, REDUZIR CRAVOS E ESPINHAS",
     "Preco": 80.00,
     "novoPreco": 60.00,
     "imageSrc": "../src/assets/imgs/skin2.png",
@@ -18,8 +18,8 @@
     "Categoria": "skin"
   },
   {
-    "id": 3,
-    "name": "HIDRATANTE + VITAMINA C, ANTIOXIDANTE CORPORAL",
+    "id_produto": 3,
+    "name_produto": "HIDRATANTE + VITAMINA C, ANTIOXIDANTE CORPORAL",
     "Preco": 80.00,
     "novoPreco": 50.00,
     "imageSrc": "../src/assets/imgs/skin3.png",
@@ -27,8 +27,8 @@
     "Categoria": "skin"
   },
   {
-    "id": 4,
-    "name": "KIT SUN COM BLENDING FACIAL E SÉRUM CONTROL DE OLEOSIDADE",
+    "id_produto": 4,
+    "name_produto": "KIT SUN COM BLENDING FACIAL E SÉRUM CONTROL DE OLEOSIDADE",
     "Preco": 100.00,
     "novoPreco": 90.00,
     "imageSrc": "../src/assets/imgs/skin4.png",
@@ -36,8 +36,8 @@
     "Categoria": "skin"
   },
   {
-    "id": 5,
-    "name": "Óleo Essencial Natural de Jojoba 10mL",
+    "id_produto": 5,
+    "name_produto": "Óleo Essencial Natural de Jojoba 10mL",
     "Preco": 70.00,
     "novoPreco": 40.00,
     "imageSrc": "../src/assets/imgs/arom1.png",
@@ -45,8 +45,8 @@
     "Categoria": "Arom"
   },
   {
-    "id": 6,
-    "name": "Óleo Essencial Natural de Jojoba 10mL",
+    "id_produto": 6,
+    "name_produto": "Óleo Essencial Natural de Jojoba 10mL",
     "Preco": 80.00,
     "novoPreco": 60.00,
     "imageSrc": "../src/assets/imgs/arom2.png",
@@ -54,8 +54,8 @@
     "Categoria": "Arom"
   },
   {
-    "id": 7,
-    "name": "Óleo Essencial Natural de Argan 10mL",
+    "id_produto": 7,
+    "name_produto": "Óleo Essencial Natural de Argan 10mL",
     "Preco": 80.00,
     "novoPreco": 50.00,
     "imageSrc": "../src/assets/imgs/arom3.png",
@@ -63,8 +63,8 @@
     "Categoria": "Arom"
   },
   {
-    "id": 8,
-    "name": "Óleo Essencial Natural de Argan 10mL",
+    "id_produto": 8,
+    "name_produto": "Óleo Essencial Natural de Argan 10mL",
     "Preco": 100.00,
     "novoPreco": 90.00,
     "imageSrc": "../src/assets/imgs/arom4.png",
