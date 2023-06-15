@@ -22,7 +22,7 @@ const Home = () => {
               </div>
               <div className="w-auto">
                 <h5 className="mx-9 mb-2 font-bold text-primary text-start">COMPRA SEGURA</h5>
-                <h6 className="mx-9 font-normal dark:text-neutral-50 text-start">Ambiente protegido </h6>
+                <h6 className="mx-9 font-normal dark:text-gray-500 text-start">Ambiente protegido </h6>
               </div>
             <div
               className="absolute right-4 top-0 hidden h-full min-h-[1em] w-px self-stretch border-t-0 bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-25 dark:opacity-100 lg:block"></div>
@@ -36,7 +36,7 @@ const Home = () => {
               </div>
               <div className="w-auto">
                 <h5 className="mx-9 mb-2 font-bold text-primary text-start">Frete Grátis </h5>
-                <h6 className="mx-9 font-normal dark:text-neutral-50 text-start">Acima de R$99 reais </h6>
+                <h6 className="mx-9 font-normal dark:text-gray-500 text-start">Acima de R$99 reais </h6>
               </div>
             <div
               className="absolute right-4 top-0 hidden h-full min-h-[1em] w-px self-stretch border-t-0 bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-25 dark:opacity-100 lg:block"></div>
@@ -50,7 +50,7 @@ const Home = () => {
               </div>
               <div className="w-auto">
                 <h5 className="mx-9 mb-2 font-bold text-primary text-start">DEVOLUÇÃO FÁCIL</h5>
-                <h6 className="mx-9 font-normal dark:text-neutral-50 text-start">Até 30 dias para troca</h6>
+                <h6 className="mx-9 font-normal dark:text-gray-500 text-start">Até 30 dias para troca</h6>
               </div>
             <div
               className="absolute right-4 top-0 hidden h-full min-h-[1em] w-px self-stretch border-t-0 bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-25 dark:opacity-100 lg:block"></div>
@@ -64,7 +64,7 @@ const Home = () => {
               </div>
               <div className="w-auto">
                 <h5 className="mx-5  mb-2 font-bold text-primary text-start">DESCONTO PROGRESSIVO</h5>
-                <h6 className="mx-5 font-normal dark:text-neutral-50 text-start">Em até toda compra</h6>
+                <h6 className="mx-5 font-normal dark:text-gray-500 text-start">Em até toda compra</h6>
               </div>
           </div>
           </div>

@@ -51,14 +51,31 @@ function classNames(...classes) {
       //   setCarrinho(novoCarrinho);
       // }
       
-      const [userEmail, setUserEmail] = useState('');
+      const [userName, setUserName] = useState('');
 
       //pega o valor que esta armazenado no localstorage
+
       useEffect(() => {
-        const email = localStorage.getItem('email');
-        setUserEmail(email || '');
+        const User = localStorage.getItem('User');
+        setUserName(User || '');
       }, []);
       
+      const checkUserLoggedIn = () => {
+        const User = localStorage.getItem('User');
+        // let btnCad = document.getElementById("btnCad");
+
+        if (User !== null && User !== '') {
+          
+          console.log('O usuário está logado:', User);
+          // btnCad.style.borderBottomColor = '#CA1C2A';
+          
+        } else {
+          console.log('O usuário não está logado');
+        }
+      };
+      // Chama para verificar o status do usuário
+      checkUserLoggedIn();
+
     return <div >
         <div className="flex h-5  bg-aurora-fundoBody mx-auto max-w-7xl items-center justify-center p-3 lg:px-8 ">
              <p className="text-xs sm:text-base">20% OFF + frete grátis acima de R$99 com o cupom PRIMEIRACOMPRA</p>
@@ -73,7 +90,7 @@ function classNames(...classes) {
                 {/* {user ? <p>Olá {user}</p>:""} */}
                 <Menu.Button className="inline-flex w-full ">
                   <UserCircleIcon className="h-7  mt-3 text-gray-100 hidden sm:block cursor-pointer"aria-hidden="true"></UserCircleIcon>
-                  <p className="text-gray-50 ml-2 mr-1 mt-3">{userEmail}</p>
+                  <p className="text-gray-50 ml-2 mr-1 mt-3">{userName}</p>
                 </Menu.Button>
 
           {/* DROPDOWN */}
@@ -104,7 +121,7 @@ function classNames(...classes) {
                     </Menu.Item>
                     <Menu.Item>
                       {({ active }) => (
-                        <a
+                        <a id="btnCad"
                           href="/auroraorganic/cadastro"
                           className={classNames(
                             active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
@@ -124,7 +141,7 @@ function classNames(...classes) {
           {/* CARRINHO   */}
           <Carrinho />
           <Teste/>
-          
+          <button></button>
              
         <Bars3Icon id="responsNavbar"  className="h-8 ms-16 text-gray-50 hidden sm:block cursor-pointer"aria-hidden="true"><Navbar></Navbar></Bars3Icon>                        
           </div>

@@ -1,9 +1,9 @@
 'use strict';
 const { Model,DataTypes  } = require('sequelize');
-const listaJson = require('../../../listSkin.json');
+const listaJson = require('../../../listProdutos.json');
 
 module.exports = (sequelize, DataTypes) => {
-  class produtosSkin extends Model {
+  class produtos extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  produtosSkin.init({
+  produtos.init({
     id_produto: {
       allowNull: false,
       autoIncrement: true,
@@ -47,11 +47,11 @@ module.exports = (sequelize, DataTypes) => {
     
   }, {
     sequelize,
-    modelName: 'produtosSkin',
+    modelName: 'produtos',
   });
 
 
-  produtosSkin.loadFromJSON = async function(jsonData) {
+  produtos.loadFromJSON = async function(jsonData) {
     try {
       await this.bulkCreate(jsonData);
       console.log('Dados carregados com sucesso.');
@@ -60,8 +60,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
 // Chamar a função para carregar os dados ao iniciar o modelo
-  produtosSkin.loadFromJSON(listaJson); 
+  //  produtos.loadFromJSON(listaJson); 
 
 
-  return produtosSkin;
+  return produtos;
 };

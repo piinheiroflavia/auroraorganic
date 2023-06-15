@@ -4,52 +4,56 @@ import Headers from "../../components/Header/Header";
 import React, { useState } from 'react';
 import axios from "axios";
 
+
 const Cadastro = () => {
 
-const [data, setData]= useState({
-        nome_cliente : '',
-        email_cliente : '',
-        senha_cliente : ''
-});
+    const [data, setData]= useState({
+            nome_cliente : '',
+            email_cliente : '',
+            senha_cliente : ''
+    });
 
-const [message,setMessage] = useState("");
+    const [message,setMessage] = useState("");
 
-const sendmsg = async (e) => {
-    e.preventDefault();
-    //console.log(`nome: ${data.nome_cliente}`);
-    //console.log(`email: ${data.email_cliente}`);
-   //console.log(`senha: ${data.senha_cliente}`);
+    const sendmsg = async (e) => {
+        e.preventDefault();
+        //console.log(`nome: ${data.nome_cliente}`);
+        //console.log(`email: ${data.email_cliente}`);
+    //console.log(`senha: ${data.senha_cliente}`);
 
-    const  headers = {
-        'headers': {
-            'Content-Type': 'application/json'
-        }
+        const  headers = {
+            'headers': {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        await axios.post('http://localhost:9080/cadastro', data, headers)
+        .then((response) => {
+        setMessage(response.data.message);
+        localStorage.setItem('usuario', JSON.stringify(response.data.data)); 
+        setData({
+            nome_cliente : '',
+            email_cliente : '',
+
+        });
+
+        })
+        .catch((err) => {
+        setMessage(err.response.data.message);
+        });
+    
     };
 
-    await axios.post('http://localhost:9080/cadastro', data, headers)
-    .then((response) => {
-      setMessage(response.data.message);
-    
-      setData({
-        nome_cliente : '',
-        email_cliente : '',
-        senha_cliente : '',
-        confSenha : '',
-    });
-
-    })
-    .catch((err) => {
-      setMessage(err.response.data.message);
-    });
-  
-};
-
-const valorinput = e => {  
-        setData({...data,[e.target.id]: e.target.value});   
-};
+    const valorinput = e => {  
+            setData({...data,[e.target.id]: e.target.value});   
+    };
 
 //alert mensagem do banco
 const acionarEnviar = () => { 
+
+    //Armazene os dados no localStorage
+    localStorage.setItem('User', data.nome_cliente); 
+
     let msgAlert = document.getElementById('msgBoxAlert');
     let titleCad = document.getElementById("titleCad");
     msgAlert.style.display = " block"; 

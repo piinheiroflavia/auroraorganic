@@ -7,8 +7,8 @@ const listaJson = require('../../../listProdutos.json');
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    const product = require('../models/product')(queryInterface.sequelize, DataTypes);
-    await queryInterface.createTable('products', {
+    const produtos = require('../models/produtos')(queryInterface.sequelize, DataTypes);
+    await queryInterface.createTable('produtos', {
       id_produto: {
         autoIncrement: true,
         primaryKey: true,
@@ -42,7 +42,7 @@ module.exports = {
       }
     });
     // Carregar os dados do JSON para a tabela
-    await product.loadFromJSON(listaJson);
+    await produtos.loadFromJSON(listaJson);
   },
 
   down: async (queryInterface, Sequelize) => {

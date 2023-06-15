@@ -23,7 +23,7 @@ const productController = require("./controllers/productController.js");
 app.use('/cadastro', cadastro);
 app.use('/login', login);
 //app.use("/produtoSkin", produtosSkinController);
-app.use("/product", productController);
+app.use("/produtos", productController);
 
 
 app.listen(9080, () => {

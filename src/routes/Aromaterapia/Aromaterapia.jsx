@@ -17,7 +17,6 @@ const Aromaterapia = () => {
         </blockquote>
         <CardVendArom/>
         <CardVendArom/>
-        <CardVendArom/>
         <br className="mb-40"></br>
         
         <FormNewsLetter/>   

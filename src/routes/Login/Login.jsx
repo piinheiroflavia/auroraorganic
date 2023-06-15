@@ -20,33 +20,48 @@ const [message,setMessage] = useState("");
 
 const sendmsg = async (e) => {
     e.preventDefault();
-    const  headers = {
-        'headers': {
-            'Content-Type': 'application/json'
-        }
+    const headers = {
+      'Content-Type': 'application/json'
     };
-
-    await axios.post('http://localhost:9080/login', data, headers)
-    .then((response) => {
-      setMessage(response.data.message);
-    // Salvar informações do usuário no localStorage
-    localStorage.setItem('usuario', JSON.stringify(response.data.data));
-
-      setData({
-        email_cliente : '',
-        senha_cliente : ''
-    });
-
-    })
-    .catch((err) => {
-      setMessage(err.response.data.message);
-    });
   
-};
-
-
-
-
+    await axios.post('http://localhost:9080/login', data, headers)
+      .then((response) => {
+        setMessage(response.data.message);
+  
+        if (response.data.clienteEncontrado) {
+          // Salvar informações do usuário no localStorage
+          localStorage.setItem('User', JSON.stringify(response.data.email_cliente));
+  
+          // Chamar a rota de API para obter o valor da coluna nome
+          axios.get(`http://localhost:9080/obter-nome/${response.data.email_cliente}`)
+            .then((response) => {
+              const nome = response.data.nome;
+  
+              // Armazenar o nome no LocalStorage somente se estiver disponível
+              if (nome) {
+                localStorage.setItem('Nome', nome);
+              } else {
+                localStorage.removeItem('Nome');
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        } else {
+          localStorage.removeItem('User');
+          localStorage.removeItem('Nome');
+        }
+  
+        setData({
+          email_cliente: '',
+          senha_cliente: ''
+        });
+      })
+      .catch((err) => {
+        setMessage(err.response.data.message);
+      });
+  };
+  
 const valorinput = e => {  
         setData({...data,[e.target.id]: e.target.value});   
 };
@@ -56,7 +71,7 @@ const valorinput = e => {
 const acionarEnviar = () => { 
 
     //Armazene os dados no localStorage
-    localStorage.setItem('email', data.email_cliente);
+    localStorage.setItem('User', data.email_cliente);
     
     let msgAlert = document.getElementById('msgBoxAlert');
     let titleCad = document.getElementById("titleCad");
