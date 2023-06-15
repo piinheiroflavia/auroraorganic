@@ -43,14 +43,14 @@ const posts = [
 
 export default function Example() {
   return (
-    <div className=" py-5 sm:py-5">
-      <div className="grid justify-items-center mx-auto max-w-7xl px-6 lg:px-8">
+    <div className=" py-5 sm:py-5 ">
+      <div className="grid justify-items-center mx-auto max-w-7xl px-6 lg:px-8 ">
         
         <div className="mx-auto mt-5 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-6 pt-9 sm:mt-16 sm:pt-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           
           {posts.map((post) => (
 
-            <article key={post.id} className="flex max-w-xl flex-col items-start justify-between">
+            <article key={post.id} className="flex max-w-xl flex-col  group py-4 px-6 rounded-lg justify-center items-center bg-aurora-branco">
               <div className="">
               <img src={post.imageSrc} className='rounded-lg w-80 ' />
               </div>
