@@ -1,5 +1,6 @@
 'use strict';
 const { Model } = require('sequelize');
+const carShop = require('./carShop');
 
 module.exports = (sequelize, DataTypes) => {
   class cliente extends Model {
@@ -10,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      cliente.hasMany(models.carShop, { foreignKey: 'id_cliente' });
     }
   }
   cliente.init({

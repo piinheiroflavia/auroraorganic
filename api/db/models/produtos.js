@@ -1,6 +1,8 @@
 'use strict';
 const { Model,DataTypes  } = require('sequelize');
 const listaJson = require('../../../listProdutos.json');
+const carShop = require('./carShop');
+
 
 module.exports = (sequelize, DataTypes) => {
   class produtos extends Model {
@@ -10,7 +12,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+     // Associação com o modelo carShop
+      produtos.hasMany(models.carShop, { foreignKey: 'id_produto' });
     }
   }
   produtos.init({

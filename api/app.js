@@ -15,15 +15,19 @@ app.use((req, res, next) => {
 // Importar o controller
 const cadastro = require("./controllers/cadastro.js");
 const login = require("./controllers/login.js");
-//const produtosSkinController = require("./controllers/produtosSkinController.js");
 const productController = require("./controllers/productController.js");
+const carShopController = require("./controllers/carShopController.js");
 
 
 //passa o endpoint
 app.use('/cadastro', cadastro);
 app.use('/login', login);
-//app.use("/produtoSkin", produtosSkinController);
 app.use("/produtos", productController);
+// o parâmetro :id nas rotas /carrinho/produto/:id e carrinho/remover-carrinho/:id
+// indica um valor dinâmico que pode ser acessado no controlador através do objeto req.params.id
+app.use("/carrinho/produto/:id", carShopController);
+app.use("/carrinho/enviar-carrinho", carShopController);
+app.use("/carrinho/remover-carrinho/:id", carShopController);
 
 
 app.listen(9080, () => {

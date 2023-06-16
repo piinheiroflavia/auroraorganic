@@ -6,6 +6,7 @@ const listaJson = require('../../../listProdutos.json');
 /** @type {import('sequelize-cli').Migration} */
 
 module.exports = {
+  //defini as operações de criação da tabela no método up
   up: async (queryInterface, Sequelize) => {
     const produtos = require('../models/produtos')(queryInterface.sequelize, DataTypes);
     await queryInterface.createTable('produtos', {

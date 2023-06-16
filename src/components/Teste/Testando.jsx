@@ -55,7 +55,7 @@ const Produtos = [
 
 const Testando = () => {
 
-    const [open, setOpen] = useState(true)
+    const [open, setOpen] = useState(false)
     const [produtosNoCarrinho, setProdutosNoCarrinho] = useState([]);
 
     return(

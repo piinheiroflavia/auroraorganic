@@ -55,7 +55,7 @@ const products = [
 
 const Carrinho = () => {
 
-    const [open, setOpen] = useState(true)
+    const [open, setOpen] = useState(false)
 
     return(
         <div>

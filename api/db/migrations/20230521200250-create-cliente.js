@@ -2,6 +2,8 @@
 var DataTypes = require('sequelize/lib/data-types');
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
+  
+  //defini as operações de criação da tabela no método up
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('clientes', {
       id_cliente: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
