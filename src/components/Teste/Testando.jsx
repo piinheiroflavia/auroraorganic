@@ -9,49 +9,7 @@ import ImagemArom1 from '../../assets/imgs/arom1.png';
 import ImagemArom2 from '../../assets/imgs/arom2.png';
 import ImagemArom3 from '../../assets/imgs/arom3.png';
 import ImagemArom4 from '../../assets/imgs/arom4.png';
-const Produtos = [
-    {
-      id: 1,
-      name: 'Óleo Essencial Natural de Jojoba 10mL',
-      Preco: 'R$70,00',
-      novoPreco: 'R$40,00',
-      imageSrc: ImagemArom1,
-      imageAlt: 'Óleo Essencial Natural de Jojoba 10mL',
-      carrinho: true,
-      favorite: false,
-    },
-    {
-      id: 2,
-      name: 'Óleo Essencial Natural de Jojoba 10mL',
-      Preco: 'R$80,00',
-      novoPreco: 'R$60,00',
-      imageSrc:ImagemArom2,
-      imageAlt: 'Óleo Essencial Natural de Jojoba 10mL',
-      carrinho: true,
-      favorite: false,
-    },
-    {
-      id: 3,
-      name: 'Óleo Essencial Natural de Argan 10mL',
-      Preco: 'R$80,00',
-      novoPreco: 'R$50,00',
-      imageSrc: ImagemArom3,
-      imageAlt: 'Óleo Essencial Natural de Argan 10mL',
-      carrinho: true,
-      favorite: false,
-    },
-    {
-      id: 4,
-      name: 'Óleo Essencial Natural de Argan 10mL',
-      Preco: 'R$100,00',
-      novoPreco: 'R$90,00',
-      imageSrc: ImagemArom4,
-      imageAlt: 'Óleo Essencial Natural de Argan 10mL',
-      carrinho: true,
-      favorite: false,
-    },
-    
-]
+
 
 const Testando = () => {
 

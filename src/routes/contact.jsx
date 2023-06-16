@@ -1,135 +1,3 @@
-//   import { useEffect , useState } from 'react'
-//   import ImagemSkin1 from '../assets/imgs/skin1.png';
-//   import ImagemSkin2 from '../assets/imgs/skin2.png';
-//   import ImagemSkin3 from '../assets/imgs/skin3.png';
-//   import ImagemSkin4 from '../assets/imgs/skin4.png';
-
-
-//   export default function Contact() {
-//     const [produtos, setProdutos] = useState ([
-//       {
-//         id: 1,
-//         name: 'KIT ÓLEO DE ROSA MOSQUETA E BALM CB2',
-//         Preco: 'R$70,00',
-//         novoPreco: 'R$40,00',
-//         imageSrc: ImagemSkin1,
-//         imageAlt: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
-//         carrinho: true,
-//         favorite: false,
-//       },
-//       {
-//         id: 2,
-//         name: 'SOLUÇÃO ÁCIDO SALICÍLICO, REDUZIR CRAVOS E ESPINHAS',
-//         Preco: 'R$80,00',
-//         novoPreco: 'R$60,00',
-//         imageSrc: ImagemSkin2,
-//         imageAlt: 'Óleo Essencial Natural de Melaleuca 10mL',
-//         carrinho: true,
-//         favorite: false,
-//       },
-//       {
-//         id: 3,
-//         name: 'HIDRATANTE + VITAMINA C, ANTIOXIDANTE CORPORAL',
-//         Preco: 'R$80,00',
-//         novoPreco: 'R$50,00',
-//         imageSrc: ImagemSkin3,
-//         imageAlt: 'HIDRATANTE + VITAMINA C',
-//         carrinho: true,
-//         favorite: false,
-//       },
-//       {
-//         id: 4,
-//         name: 'KIT SUN COM BLENDING FACIAL E SÉRUM CONTROL DE OLEOSIDADE',
-//         Preco: 'R$100,00',
-//         novoPreco: 'R$90,00',
-//         imageSrc: ImagemSkin4,
-//         imageAlt: 'Óleo Essencial Natural de Melaleuca 10mL',
-//         carrinho: true,
-//         favorite: false,
-//       },
-//     ])
-
-//     // Definindo o estado inicial para a lista de produtos no carrinho
-//     const [produtosNoCarrinho, setProdutosNoCarrinho] = useState([]);
-//     const [totalPreco, setTotalPreco] = useState(0);
-    
-//     // // Atualize o preço total somando o preço do produto
-//     // useEffect(() => {
-//     //   // Recalcula o total de preço sempre que a lista de produtos no carrinho mudar
-//     //   const novoTotalPreco = produtosNoCarrinho.reduce((total, produto) => {
-//     //     return total + parseFloat(produto.Preco.replace('R$', '').replace(',', '.'));
-//     //   }, 0);
-//     //   setTotalPreco(novoTotalPreco);
-//     // }, [produtosNoCarrinho]);
-
-
-//     const handleClickAdicionar = (id) => {
-//       // Encontre o produto pelo ID
-//       const produtoSelecionado = produtos.find((produto) => produto.id === id);
-//       const jsonProdutosNoCarrinho = JSON.stringify(produtosNoCarrinho);
-
-
-//       if (produtoSelecionado) {
-//         setTimeout(() => {
-//           setProdutosNoCarrinho((prevProdutos) => [...prevProdutos, produtoSelecionado]);
-//         }, 3); // Aguarda 10 milissegundos antes de adicionar o produto ao carrinho        setTotalPreco((prevTotal) => prevTotal + parseFloat(produtoSelecionado.Preco.replace('R$', '').replace(',', '.')));
-
-//         console.log(`Produto adicionado ao carrinho:\n ID: ${produtoSelecionado.id}\n Nome: ${produtoSelecionado.name}\n Preço: ${produtoSelecionado.Preco}`);
-//         console.log(jsonProdutosNoCarrinho);
-//         //console.log('Valor total R$ ' + totalPreco);
-//       }
-
-//     };
-
-
-//     // // Função para adicionar um produto ao carrinho
-//     // const handleClickAdicionar = (id) => {
-
-//     // // Procura o produto com o ID correspondente na lista de produtos
-//     // const produtoSelecionado = produtos.find((produto) => produto.id === id);
-//     // // Converte a lista de produtos no carrinho em uma string JSON
-//     // const jsonProdutosNoCarrinho = JSON.stringify(produtosNoCarrinho);
-    
-
-//     // // Verifica se o produto foi encontrado
-//     // if (produtoSelecionado) {
-//     //   // Adiciona o produto selecionado à lista de produtos no carrinho
-//     //   setProdutosNoCarrinho([...produtosNoCarrinho, produtoSelecionado]);
-//     //   console.log(`Produto adicionado ao carrinho:\n ID: ${produtoSelecionado.id}\n Nome: ${produtoSelecionado.name}\n Nome: ${produtoSelecionado.Preco} `);
-//     //   console.log(jsonProdutosNoCarrinho);
-//     // }
-//     // };
-
-//     const handleRemoverDoCarrinho = (id) => {
-//       // filtra o produto com o ID correspondente na lista de produtos
-//       const novoCarrinho = produtosNoCarrinho.filter((produto) => produto.id !== id);
-//       const produtoRemovido = produtosNoCarrinho.find((produto) => produto.id === id);
-//       if (produtoRemovido) {
-//         setProdutosNoCarrinho(novoCarrinho);
-//         setTotalPreco((prevTotal) => prevTotal - parseFloat(produtoRemovido.Preco.replace('R$', '').replace(',', '.')));
-//         console.log(`Produto removido do carrinho:\nID: ${id}`);
-//       }
-//     };
-
-//     return produtos.map((produto) => (
-//       <div key={produto.id}><br></br>
-//       <div>
-//         <h3>{produto.name}</h3>
-//         <p>{produto.Preco}</p>
-//         <button onClick={() => handleClickAdicionar(produto.id)}>Adicionar</button><br></br>
-//         <button onClick={() => handleRemoverDoCarrinho(produto.id)}>Remover</button><br></br>
-//       </div>
-
-      
-//       </div>
-//     ));
-
-// }
-
-
-
-
-
 import { useEffect, useState } from 'react';
 import Testando from '../components/Teste/Testando';
 
@@ -137,7 +5,7 @@ export default function Contact() {
   
   const [produto, setProdutos] = useState([]);
   //Adiciona um estado para armazenar o ID do produto selecionado
-  const [selectedProductId, setSelectedProductId] = useState(null);
+  //const [selectedProductId, setSelectedProductId] = useState(null);
 
 
   useEffect(() => {
@@ -184,6 +52,26 @@ export default function Contact() {
     }
   }
 
+  
+// // Remove o carrinho com id = 1
+// const handleClickRemover = async (carrinhoId) => {
+//   try {
+//     const response = await fetch(`http://localhost:9080/carrinho/remover-carrinho/${carrinhoId}`, {
+//       method: 'DELETE',
+//     });
+
+//     if (response.ok) {
+//       // O produto foi removido com sucesso do carrinho
+//       console.log('Produto removido do carrinho');
+//     } else {
+//       // Ocorreu um erro ao remover o produto do carrinho
+//       console.error('Erro ao remover o produto do carrinho:', response.statusText);
+//     }
+//   } catch (error) {
+//     console.error('Erro ao remover o produto do carrinho:', error);
+//   }
+// };
+
   return (
     <div className='mx-8 mt-3 '>
       <Testando/>
@@ -199,8 +87,8 @@ export default function Contact() {
             <h3>{produtos.name_produto}</h3>
             <p>{produtos.Preco}</p>
             <p>{produtos.Categoria}</p>
-            <button className='bg-gray-800 text-rose-50 my-3' onClick={() => handleClickAdicionar(produtos.id_produto)}>Adicionar</button>
-            {/* <button className='bg-gray-800 text-rose-50' onClick={() => handleRemoverDoCarrinho(produto.id)}>Remover</button><br></br> */}
+            <button className='bg-gray-800 text-rose-50 my-3' type='submit' onClick={() => handleClickAdicionar(produtos.id_produto)}>Adicionar</button> <br />
+             {/* <button className='bg-gray-800 text-rose-50' onClick={() => handleClickRemover(produtos.id_produto)}>Remover</button><br></br> */}
           </div>
           <br /><br />
         </div>

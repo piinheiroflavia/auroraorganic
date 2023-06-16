@@ -1,15 +1,19 @@
 const express = require("express");
-const CarShop = require("../db/models/carShop");
-const Produto = require("../db/models/produtos");
+const db = require("../db/models");
+const CarShop = db.carShop;
 const router = express.Router();
 
+// const Produtos = require("../db/models/produtos");
+// const Cliente = require("../db/models/cliente")
+
+
 // Recupera os detalhes do produto
-router.get("/produto/:id", async (req, res) => {
+router.get("/produtos/:id", async (req, res) => {
   try {
     const produtoId = req.params.id;
 
     // Consulta o produto no banco de dados
-    const produto = await Produto.findByPk(produtoId);
+    const produto = await Produto.findOne({ where: { id_produto: produtoId } });
 
     if (!produto) {
       console.log("Produto não encontrado");
@@ -30,9 +34,11 @@ router.get("/produto/:id", async (req, res) => {
 router.post("/enviar-carrinho", async (req, res) => {
   try {
     const { id_cliente, id_produto, quantidade } = req.body;
+    console.log("Dados recebidos do corpo da requisição:", id_cliente, id_produto, quantidade);
 
     // Consulta o produto no banco de dados para obter o preço unitário
-    const produto = await Produto.findByPk(id_produto);
+    const produto = await db.produtos.findOne({ where: { id_produto: id_produto } });
+  
 
     if (!produto) {
       console.log("Produto não encontrado");

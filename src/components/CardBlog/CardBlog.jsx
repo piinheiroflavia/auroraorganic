@@ -50,9 +50,9 @@ export default function Example() {
           
           {posts.map((post) => (
 
-            <article key={post.id} className="flex max-w-xl flex-col  group py-4 px-6 rounded-lg justify-center items-center bg-aurora-branco">
+            <article key={post.id} className="flex max-w-xl flex-col  group py-4 px-6 rounded-lg justify-center items-center bg-aurora-branco shadow-lg">
               <div className="">
-              <img src={post.imageSrc} className='rounded-lg w-80 ' />
+              <img src={post.imageSrc} className='rounded-lg w-80  mb-3 shadow-md' />
               </div>
               <div className="my-2 flex items-center gap-x-4 text-xs">
                 <time  className="text-gray-500">
@@ -64,21 +64,21 @@ export default function Example() {
                 <a href={post.category.href} className="relative z-10 rounded-full bg-gray-300 px-3 py-1.5 font-medium text-gray-600 hover:bg-aurora-tomNeutro hover:text-gray-50"
                 >{post.category.tag2}</a>
               </div>
-              <div className="group relative">
+              <div className="group relative px-2">
                 <h3 className="my-7 text-lg font-semibold leading-6 text-gray-900">
-                  <span className="absolute inset-0"> {post.title}</span>
+                  <span className="absolute inset-0 px-2"> {post.title}</span>
                 </h3>
                 
                 <p className="my-12 line-clamp-3 text-sm leading-6 text-gray-600">{post.description}</p>
 
                 <div className="flex justify-start items-center">
                   <div>
-                    <button type="button" className="flex justify-center w-full items-center relative p-2 py-1 bg-aurora-fundoEscuro font-medium text-gray-50 hover:bg-orange-700 hover:text-gray-50"
+                    <button type="button" className="flex justify-center w-full items-center relative p-2 py-1  font-medium text-gray-900 hover:text-orange-700"
                     > <a href="/auroraorganic/blog">Leia mais</a>  </button>
                   </div>
-                  {/* <div>
-                    <ArrowSmallRightIcon className="h-4 mx-2 text-orange-700 hidden sm:block cursor-pointer"aria-hidden="true"></ArrowSmallRightIcon>
-                  </div> */}
+                   <div>
+                    <ArrowSmallRightIcon className="h-4  text-gray-900 hidden sm:block cursor-pointer"aria-hidden="true"></ArrowSmallRightIcon>
+                  </div> 
                 </div>     
               </div>
               

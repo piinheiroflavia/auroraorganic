@@ -1,19 +1,15 @@
 'use strict';
-const { Model,DataTypes  } = require('sequelize');
+const { Sequelize, Model, DataTypes } = require('sequelize');
 const listaJson = require('../../../listProdutos.json');
 const carShop = require('./carShop');
 
 
 module.exports = (sequelize, DataTypes) => {
   class produtos extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
      // Associação com o modelo carShop
       produtos.hasMany(models.carShop, { foreignKey: 'id_produto' });
+      
     }
   }
   produtos.init({
@@ -62,8 +58,6 @@ module.exports = (sequelize, DataTypes) => {
       console.error('Erro ao carregar os dados:', error);
     }
   };
-// Chamar a função para carregar os dados ao iniciar o modelo
-  //  produtos.loadFromJSON(listaJson); 
 
 
   return produtos;

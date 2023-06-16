@@ -25,9 +25,8 @@ app.use('/login', login);
 app.use("/produtos", productController);
 // o parâmetro :id nas rotas /carrinho/produto/:id e carrinho/remover-carrinho/:id
 // indica um valor dinâmico que pode ser acessado no controlador através do objeto req.params.id
-app.use("/carrinho/produto/:id", carShopController);
-app.use("/carrinho/enviar-carrinho", carShopController);
-app.use("/carrinho/remover-carrinho/:id", carShopController);
+app.use("/carrinho", carShopController);
+
 
 
 app.listen(9080, () => {

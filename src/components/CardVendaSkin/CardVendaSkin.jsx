@@ -62,12 +62,12 @@ export default function Example() {
       
           <div className=" grid grid-cols-1 gap-x-6 gap-y-13 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8  border-t border-gray-200 pt-2 sm:mt-16 sm:pt-12 lg:mx-0">
             {produto.map((produtos) => (
-              <a key={produtos.id_produto} href={produtos.href} className="group py-4 px-6 rounded-lg bg-aurora-branco"  >
+              <a key={produtos.id_produto} href={produtos.href} className="group py-4 px-6 rounded-lg bg-aurora-branco shadow-lg"  >
                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
                   <img
                     src={produtos.imageSrc}
                     alt={produtos.imageAlt}
-                    className="h-full w-full object-cover .hover:scale-110   object-center group-hover:opacity-75"
+                    className="h-full w-full object-cover .hover:scale-110  object-center group-hover:opacity-75"
                   />
                 </div>
                 <h3 className="mt-4 text-sm text-gray-700">{produtos.name_produto}</h3>

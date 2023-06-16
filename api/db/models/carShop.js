@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   carShop.init(
     {
-      id_carrinho: {
+      id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
@@ -45,7 +45,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: 'carShop',
-      tableName: 'carrinho',
+      tableName: 'carshops',
       timestamps: true,
       createdAt: 'createdAt',
       updatedAt: 'updatedAt'
