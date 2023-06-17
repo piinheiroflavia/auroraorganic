@@ -4,10 +4,6 @@ import { Dialog, RadioGroup, Transition } from '@headlessui/react'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { Fragment, useState, useEffect  } from 'react'
 import { Rating } from "@material-tailwind/react";
-import ImagemSkin1 from '../../assets/imgs/skin1.png';
-import ImagemSkin2 from '../../assets/imgs/skin2.png';
-import ImagemSkin3 from '../../assets/imgs/skin3.png';
-import ImagemSkin4 from '../../assets/imgs/skin4.png';
 
 
 function classNames(...classes) {
@@ -17,16 +13,12 @@ function classNames(...classes) {
 export default function Example() {
    
      const [open, setOpen] = useState(false)
-    
-    const handleClickAdicionar = (id_produto) => {
-       adicionarAoCarrinho(produtosNoCarrinho.id);
-       alert('adiciona') 
-     };
-
-    
-
      const [isMouseOver, setIsMouseOver] = useState(false);
      const [selectedProduct, setSelectedProduct] = useState(null);
+     const [produtos, setProdutos] = useState([]);
+     const [carrinho, setCarrinho] = useState([]);
+     const clienteId = 1; // Id do cliente atual, ajuste conforme necessário
+
     // //passar o mouse
      function addCarrinhoCard(event) {
        setIsMouseOver(true);
@@ -36,24 +28,63 @@ export default function Example() {
        setIsMouseOver(false);
       } 
     
-    const [produto, setProdutos] = useState([]);
+    
 
-  useEffect(() => {
-    const fetchProdutos = async () => {
-      try {
-        const response = await fetch('http://localhost:9080/produtos');
-        const data = await response.json();
-        const produtosSkin = data.filter((produto) => produto.categoria === 'Arom');
-        setProdutos(produtosSkin);
-      } catch (error) {
-        console.error('Erro ao obter os dados do banco:', error);
+    //CARDS PRODUCT
+    useEffect(() => {
+      const fetchProdutos = async () => {
+        try {
+          const response = await fetch('http://localhost:9080/produtos');
+          const data = await response.json();
+          const produtosSkin = data.filter((produto) => produto.categoria === 'Arom');
+          setProdutos(produtosSkin);
+        } catch (error) {
+          console.error('Erro ao obter os dados do banco:', error);
+        }
+      };
+
+      fetchProdutos();
+    }, []);
+
+
+
+  //ACIONAR BUTTON
+  const ClickAdicionar = async (productId) => {
+    try {
+      const data = {
+        id_cliente: 3,
+        id_produto: productId,
+        quantidade: 1,
+      };
+
+      const response = await fetch('http://localhost:9080/carrinho/enviar-carrinho', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        alert('Produto adicionado com sucesso');
+
+        // Atualizar a lista de produtos no carrinho após a adição
+        const carrinhoResponse = await fetch('http://localhost:9080/carrinho');
+        const carrinhoData = await carrinhoResponse.json();
+        setCarrinho(carrinhoData);
+
+        // Aguardar 1 segundos antes de atualizar a página
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+
+      } else {
+        console.error('Erro ao adicionar ao carrinho:', response.statusText);
       }
-    };
-
-    fetchProdutos();
-  }, []);
-
-
+    } catch (error) {
+      console.log('Erro ao adicionar o produto ao cliente:', error);
+    }
+  };
 
     return (
       <div className="bg-dark">
@@ -61,16 +92,16 @@ export default function Example() {
         <div className=" mx-auto max-w-2xl px-6 py-1 sm:px-6 sm:py-1 lg:max-w-7xl lg:px-8">
       
           <div className=" grid grid-cols-1 gap-x-6 gap-y-13 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8  border-t border-gray-200 pt-2 sm:mt-16 sm:pt-12 lg:mx-0">
-            {produto.map((produtos) => (
-              <a key={produtos.id_produto} href={produtos.href} className="group py-4 px-6 rounded-lg bg-aurora-branco " >
+            {produtos.map((produto) => (
+              <a key={produto.id_produto} href={produto.href} className="group py-4 px-6 rounded-lg bg-aurora-branco  shadow-lg " >
                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
                   <img
-                    src={produtos.imageSrc}
-                    alt={produtos.imageAlt}
+                    src={produto.imageSrc}
+                    alt={produto.imageAlt}
                     className="h-full w-full object-cover .hover:scale-110 object-center group-hover:opacity-75"
                   />
                 </div>
-                <h3 className="mt-4 text-sm text-gray-700 uppercase">{produtos.name_produto}</h3>
+                <h3 className="mt-4 text-sm text-gray-700 uppercase">{produto.name_produto}</h3>
 
                 {/* Itens da lista */}
                 
@@ -139,15 +170,15 @@ export default function Example() {
                     </li>
                     <span className="mr-1 text-xs">23.000 avaliações</span>
                 </ul>
-                <p className="mt-1 text-xs font-medium text-gray-900"><s>R$ {produtos.Preco}.00</s></p>
-                <p className="mt-1 text-xl font-medium text-gray-900">R$ {produtos.novoPreco}.00</p>
+                <p className="mt-1 text-xs font-medium text-gray-900"><s>R$ {produto.Preco}.00</s></p>
+                <p className="mt-1 text-xl font-medium text-gray-900">R$ {produto.novoPreco}.00</p>
                 {/* <Favorite produtos={produtos} /> */}
                 {/* classificação com estrelas */}              
                 <button
                   type="button"
                   className="flex justify-center w-full items-center relative mt-8 mb-2 p-2 bg-aurora-fundoEscuro font-medium text-gray-50 hover:bg-orange-700 hover:text-gray-50 "
                   onClick={() => {
-                    setSelectedProduct(produtos);
+                    setSelectedProduct(produto);
                     setOpen(true);
                   }}
                 >Saber Mais</button>
@@ -195,7 +226,7 @@ export default function Example() {
 
                             <div className="grid w-full grid-cols-1 items-start gap-x-5 gap-y-6 sm:grid-cols-12 lg:gap-x-8 ">
                               <div className="aspect-h-2 aspect-w-2 overflow-hidden rounded-lg bg-gray-100 sm:col-span-2 lg:col-span-5">
-                              <img src={selectedProduct && selectedProduct.imageSrc} alt={selectedProduct && selectedProduct.imageAlt} className="drop-shadow-md object-cover object-center" />
+                              <img src={selectedProduct && selectedProduct.imageSrc} alt={selectedProduct && selectedProduct.imageAlt} className="drop-shadow-md object-cover shadow-lg object-center" />
                               </div>
                               <div className="sm:col-span-8 lg:col-span-7">
                               <a key={selectedProduct && selectedProduct.id_produto} href={selectedProduct && selectedProduct.href}></a>
@@ -280,7 +311,7 @@ export default function Example() {
                                   id="addCarrinhoCards"
                                   onMouseOver={addCarrinhoCard}
                                   onMouseOut={outCarrinhoCard}
-                                  onClick={() => handleClickAdicionar(selectedProduct && selectedProduct.id_produto)}
+                                  onClick={() => ClickAdicionar(produto.id_produto)}
                                   className="flex justify-center items-end relative mt-8 mb-2 p-2 bg-aurora-fundoEscuro font-medium text-gray-50 hover:text-gray-50"
                                   >
                                   {isMouseOver ? <PlusIcon className="animate-pulse h-6 text-gray-50 hidden sm:block cursor-pointer" /> : 'Comprar'}

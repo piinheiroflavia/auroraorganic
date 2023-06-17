@@ -11,7 +11,6 @@ import {useEffect} from "react";
 import Navbar from "../Navbar/Navbar";
 //import { setItem } from "localforage";
 import Carrinho from "../Carrinho/Carrinho";
-import Teste from "../Teste/Testando"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -140,7 +139,6 @@ function classNames(...classes) {
           
           {/* CARRINHO   */}
           <Carrinho />
-          <Teste/>
           <button></button>
              
         <Bars3Icon id="responsNavbar"  className="h-8 ms-16 text-gray-50 hidden sm:block cursor-pointer"aria-hidden="true"><Navbar></Navbar></Bars3Icon>                        

@@ -3,59 +3,73 @@
 import { ShoppingCartIcon, XMarkIcon} from "@heroicons/react/24/solid"
 import {Carousel, initTE, } from "tw-elements";
 initTE({ Carousel });
-import { Fragment, useState } from 'react'
+import { Fragment, useState, useEffect } from 'react';
 import { Dialog, Transition } from '@headlessui/react'
-import ImagemArom1 from '../../assets/imgs/arom1.png';
-import ImagemArom2 from '../../assets/imgs/arom2.png';
-import ImagemArom3 from '../../assets/imgs/arom3.png';
-import ImagemArom4 from '../../assets/imgs/arom4.png';
-const products = [
-    {
-      id: 1,
-      name: 'Óleo Essencial Natural de Jojoba 10mL',
-      Preco: 'R$70,00',
-      novoPreco: 'R$40,00',
-      imageSrc: ImagemArom1,
-      imageAlt: 'Óleo Essencial Natural de Jojoba 10mL',
-      carrinho: true,
-      favorite: false,
-    },
-    {
-      id: 2,
-      name: 'Óleo Essencial Natural de Jojoba 10mL',
-      Preco: 'R$80,00',
-      novoPreco: 'R$60,00',
-      imageSrc:ImagemArom2,
-      imageAlt: 'Óleo Essencial Natural de Jojoba 10mL',
-      carrinho: false,
-      favorite: false,
-    },
-    {
-      id: 3,
-      name: 'Óleo Essencial Natural de Argan 10mL',
-      Preco: 'R$80,00',
-      novoPreco: 'R$50,00',
-      imageSrc: ImagemArom3,
-      imageAlt: 'Óleo Essencial Natural de Argan 10mL',
-      carrinho: false,
-      favorite: false,
-    },
-    {
-      id: 4,
-      name: 'Óleo Essencial Natural de Argan 10mL',
-      Preco: 'R$100,00',
-      novoPreco: 'R$90,00',
-      imageSrc: ImagemArom4,
-      imageAlt: 'Óleo Essencial Natural de Argan 10mL',
-      carrinho: false,
-      favorite: false,
-    },
-    
-]
+import axios from 'axios';
+
 
 const Carrinho = () => {
 
-    const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+  const [carShop, setCarShop] = useState([]);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    const fetchProdutosNoCarrinho = async () => {
+      try {
+        const response = await axios.get('http://localhost:9080/carrinho');
+        const data = response.data;
+        console.log('Dados do carrinho:', data);
+        setCarShop(data);
+      } catch (error) {
+        console.error('Erro ao obter os produtos do carrinho:', error);
+      }
+    };
+
+    fetchProdutosNoCarrinho();
+  }, []);
+
+  useEffect(() => {
+    // Calcular o valor total dos produtos no carrinho
+    const calcularTotal = () => {
+      let valorTotal = 0;
+      for (const produto of carShop) {
+        valorTotal += produto.produto.novoPreco;
+      }
+      setTotal(valorTotal);
+    };
+
+    calcularTotal();
+  }, [carShop]);
+
+
+  const removerProduto = async (productId) => {
+    try {
+      const response = await axios.delete(`http://localhost:9080/carrinho/remover-carrinho/${productId}`);
+  
+      if (response.status === 200 || response.status === 204) {
+        console.log('Produto removido com sucesso');
+        console.log("ID do carrinho a ser removido:", productId);
+  
+        // Atualizar a lista de produtos no carrinho após a remoção
+        const carrinhoResponse = await axios.get('http://localhost:9080/carrinho');
+        const carrinhoData = carrinhoResponse.data;
+        setCarShop(carrinhoData);
+  
+        // Recalcular a soma dos valores
+        const total = carrinhoData.reduce((accumulator, item) => accumulator + item.valor_total, 0);
+        setTotal(total);
+      } else {
+        console.error('Erro ao remover do carrinho:', response.statusText);
+      }
+    } catch (error) {
+      console.log('Erro ao remover o produto do carrinho:', error);
+    }
+  };
+  
+  
+  
+  
 
     return(
         <div>
@@ -116,43 +130,43 @@ const Carrinho = () => {
                           </div>
 
                           <div className="mt-8">
+                             {/* CORPO DO CARRINHO */}
                             <div className="flow-root">
                               <ul role="list" className="-my-6 divide-y divide-gray-200">
-                                {products.map((product) => (
-                                  <li key={product.id} className="flex py-6">
+                                {carShop.map((produto, index) => (
+                                  <div key={`${produto.id_produto}-${index}`} className="flex py-6">
                                     <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                      <img
-                                        src={product.imageSrc}
-                                        alt={product.imageAlt}
+                                       <img
+                                        src={produto.produto.imageSrc}
                                         className="h-full w-full object-cover object-center"
-                                      />
+                                      /> 
                                     </div>
 
                                     <div className="ml-4 flex flex-1 flex-col">
                                       <div>
                                         <div className="flex justify-between text-base font-medium text-gray-900">
                                           <h3>
-                                            <a href={product.href}>{product.name}</a>
+                                            <a>{produto.produto.name_produto}</a>
                                           </h3>
-                                          <p className="ml-4">{product.price}</p>
+
                                         </div>
-                                        <p className="mt-1 text-sm text-gray-500">{product.color}</p>
+                                        {/* <p className="mt-1 text-sm text-gray-500">{produto.produto.categoria}</p> */}
                                       </div>
                                       <div className="flex flex-1 items-end justify-between text-sm">
-                                        <p className="text-gray-500">Valor: {product.novoPreco}</p>
+                                        <p className="text-gray-500">Valor: R${produto.produto.novoPreco},00</p>
 
                                         <div className="flex">
                                           <button
-                                            type="button"
                                             className="font-medium text-gray-900 hover:text-indigo-900"
-                                            onClick={() => removerProdutoDoCarrinho(product.id)}
+                                            type="submit"
+                                            onClick={() => removerProduto(produto.id_produto)}
                                           >
                                             Remover
                                           </button>
                                         </div>
                                       </div>
                                     </div>
-                                  </li>
+                                  </div>
                                 ))}
                               </ul>
                             </div>
@@ -161,8 +175,9 @@ const Carrinho = () => {
 
                         <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                           <div className="flex justify-between text-base font-medium text-gray-900">
-                            <p>Total</p>
-                            <p>R$??</p>
+                          <p>Total:</p>
+
+                            <p>R${total},00</p>
                           </div>
                           <div className="mt-6">
                             <a

@@ -45,7 +45,6 @@ module.exports = {
     // Carregar os dados do JSON para a tabela
     await produtos.loadFromJSON(listaJson);
   },
-
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('produtos');
   }

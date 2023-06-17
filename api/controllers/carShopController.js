@@ -2,31 +2,40 @@ const express = require("express");
 const db = require("../db/models");
 const CarShop = db.carShop;
 const router = express.Router();
+const Produto = db.produtos;
 
 // const Produtos = require("../db/models/produtos");
 // const Cliente = require("../db/models/cliente")
 
 
-// Recupera os detalhes do produto
-router.get("/produtos/:id", async (req, res) => {
+  
+// Retorna a lista de produtos no carrinho
+router.get("/", async (req, res) => {
   try {
-    const produtoId = req.params.id;
+    const produtosCarrinho = await CarShop.findAll({
+      include: [{ model: Produto, as: "produto" }], // Inclui o modelo Produto na consulta
+    });
 
-    // Consulta o produto no banco de dados
-    const produto = await Produto.findOne({ where: { id_produto: produtoId } });
+    const listaProdutos = produtosCarrinho.map((item) => ({
+      id_carrinho: item.id_carrinho,
+      id_produto: item.id_produto,
+      quantidade: item.quantidade,
+      valor_total: item.valor_total,
+      produto: {
+        id_produto: item.produto.id_produto,
+        name_produto: item.produto.name_produto,
+        Preco: item.produto.Preco,
+        novoPreco: item.produto.novoPreco,
+        imageSrc: item.produto.imageSrc,
+        imageAlt: item.produto.imageAlt,
+        categoria: item.produto.categoria,
+      },
+    }));
 
-    if (!produto) {
-      console.log("Produto não encontrado");
-      return res.status(404).json({ error: "Produto não encontrado" });
-    }
-
-    console.log("Detalhes do produto:", produto);
-    res.status(200).json(produto);
+    res.status(200).json(listaProdutos);
   } catch (error) {
-    console.error("Erro ao recuperar os detalhes do produto:", error);
-    res
-      .status(500)
-      .json({ error: "Erro ao recuperar os detalhes do produto" });
+    console.error("Erro ao obter a lista de produtos do carrinho:", error);
+    res.status(500).json({ error: "Erro ao obter a lista de produtos do carrinho" });
   }
 });
 
@@ -38,22 +47,19 @@ router.post("/enviar-carrinho", async (req, res) => {
 
     // Consulta o produto no banco de dados para obter o preço unitário
     const produto = await db.produtos.findOne({ where: { id_produto: id_produto } });
-  
+
 
     if (!produto) {
       console.log("Produto não encontrado");
       return res.status(404).json({ error: "Produto não encontrado" });
     }
-
     const valor_total = produto.Preco * quantidade;
-
     const novoCarrinho = await CarShop.create({
       id_cliente,
       id_produto,
       quantidade,
       valor_total,
     });
-
     console.log("Produto adicionado ao carrinho:", novoCarrinho);
     res.status(201).json(novoCarrinho);
   } catch (error) {
@@ -62,13 +68,12 @@ router.post("/enviar-carrinho", async (req, res) => {
   }
 });
 
+
 // Remove o produto do carrinho
 router.delete("/remover-carrinho/:id", async (req, res) => {
   try {
     const carrinhoId = req.params.id;
-
-    await CarShop.destroy({ where: { id_carrinho: carrinhoId } });
-
+    await CarShop.destroy({ where: { id: carrinhoId } });
     console.log("Produto removido do carrinho com sucesso");
     res
       .status(200)
@@ -80,5 +85,4 @@ router.delete("/remover-carrinho/:id", async (req, res) => {
       .json({ error: "Erro ao remover o produto do carrinho" });
   }
 });
-
 module.exports = router;

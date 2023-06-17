@@ -3,15 +3,12 @@ const { Model, DataTypes } = require('sequelize');
 const db = require('./index');
 const cliente = require('./cliente');
 const produto = require('./produtos');
-
-
 module.exports = (sequelize, DataTypes) => {
   class carShop extends Model {
     static associate(models) {
       // relaciona com a tabela "clientes" e "produtos"
       carShop.belongsTo(models.cliente, { foreignKey: 'id_cliente' });
       carShop.belongsTo(models.produtos, { foreignKey: 'id_produto' });
-
     }
   }
   carShop.init(
@@ -51,6 +48,5 @@ module.exports = (sequelize, DataTypes) => {
       updatedAt: 'updatedAt'
     }
   );
-
   return carShop;
 };
