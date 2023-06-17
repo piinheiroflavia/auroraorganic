@@ -61,7 +61,7 @@ export default function Example() {
       });
 
       if (response.ok) {
-        alert('Produto adicionado com sucesso');
+        //alert('Produto adicionado com sucesso');
 
         // Atualizar a lista de produtos no carrinho após a adição
         const carrinhoResponse = await fetch('http://localhost:9080/carrinho');
