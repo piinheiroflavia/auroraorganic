@@ -49,14 +49,14 @@ export default function Example() {
 
 
   //ACIONAR BUTTON
-  const ClickAdicionar = async (productId) => {
+  const ClickAdicionar = async () => {
     try {
       const data = {
         id_cliente: 3,
-        id_produto: productId,
+        id_produto: selectedProduct.id_produto,
         quantidade: 1,
       };
-
+  
       const response = await fetch('http://localhost:9080/carrinho/enviar-carrinho', {
         method: 'POST',
         headers: {
@@ -64,20 +64,19 @@ export default function Example() {
         },
         body: JSON.stringify(data),
       });
-
+  
       if (response.ok) {
-        //alert('Produto adicionado com sucesso');
-
+        // alert('Produto adicionado com sucesso');
+  
         // Atualizar a lista de produtos no carrinho após a adição
         const carrinhoResponse = await fetch('http://localhost:9080/carrinho');
         const carrinhoData = await carrinhoResponse.json();
         setCarrinho(carrinhoData);
-
-        // Aguardar 1 segundos antes de atualizar a página
+  
+        // Aguardar 1 segundo antes de atualizar a página
         setTimeout(() => {
           window.location.reload();
-        }, 1000);
-
+        }, 100);
       } else {
         console.error('Erro ao adicionar ao carrinho:', response.statusText);
       }
