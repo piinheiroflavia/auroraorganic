@@ -6,14 +6,16 @@ initTE({ Carousel });
 import { Fragment, useState, useEffect } from 'react';
 import { Dialog, Transition } from '@headlessui/react'
 import axios from 'axios';
+import { CheckCircleIcon } from '@heroicons/react/24/outline'
 
 
 const Carrinho = () => {
-
+  const [openM, setOpenM] = useState(false);
   const [open, setOpen] = useState(false);
   const [carShop, setCarShop] = useState([]);
   const [total, setTotal] = useState(0);
-
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  
   useEffect(() => {
     const fetchProdutosNoCarrinho = async () => {
       try {
@@ -43,21 +45,25 @@ const Carrinho = () => {
   }, [carShop]);
 
 
-  const removerProduto = async (productId) => {
+  const removerProduto = async (id_produto) => {
     try {
-      const response = await axios.delete(`http://localhost:9080/carrinho/remover-carrinho/${productId}`);
+      const response = await axios.delete(`http://localhost:9080/carrinho/remover-carrinho/${id_produto}`);
   
-      if (response.status === 200 || response.status === 204) {
+      if (response.status === 200) {
         console.log('Produto removido com sucesso');
-        console.log("ID do carrinho a ser removido:", productId);
+        console.log("ID do carrinho a ser removido:", id_produto);
+        const { id_produto } = response.data;
   
         // Atualizar a lista de produtos no carrinho após a remoção
-        const carrinhoResponse = await axios.get('http://localhost:9080/carrinho');
-        const carrinhoData = carrinhoResponse.data;
-        setCarShop(carrinhoData);
+        const updatedCarShop = carShop.filter((produto) => produto.id !== id_produto);
+        setCarShop(updatedCarShop);
   
+        // Remover o ID do produto do estado selectedProduct, se estiver selecionado
+        if (selectedProduct && selectedProduct.id === id_produto) {
+          setSelectedProduct(null);
+        } 
         // Recalcular a soma dos valores
-        const total = carrinhoData.reduce((accumulator, item) => accumulator + item.valor_total, 0);
+        const total = updatedCarShop.reduce((accumulator, item) => accumulator + item.valor_total, 0);
         setTotal(total);
       } else {
         console.error('Erro ao remover do carrinho:', response.statusText);
@@ -68,9 +74,6 @@ const Carrinho = () => {
   };
   
   
-  
-  
-
     return(
         <div>
             {/* CARRINHO   */}
@@ -180,12 +183,66 @@ const Carrinho = () => {
                             <p>R${total},00</p>
                           </div>
                           <div className="mt-6">
-                            <a
-                              href="#"
-                              className=" flex max-w-lg w-full justify-center items-center relative mt-8 p-2 bg-aurora-fundoEscuro font-medium text-gray-50 hover:bg-orange-700 hover:text-gray-50"
-                            >
-                              Finalizar Pedido
-                            </a>
+                          <button
+                  type="button"
+                  className="flex justify-center w-full items-center relative mt-8 mb-2 p-2 bg-aurora-fundoEscuro font-medium text-gray-50 hover:bg-orange-700 hover:text-gray-50 "
+                  onClick={() => {
+                    setOpenM(true);
+                  }}
+                >Finalizar Compra</button>
+                            
+                {/* MODAL CARD */}
+                  
+                <Transition.Root show={openM} as={Fragment}>
+                  <Dialog as="div" className="relative z-10" onClose={setOpenM} >
+                    <Transition.Child
+                      as={Fragment}
+                      enter="ease-out duration-300"
+                      enterFrom="opacity-0"
+                      enterTo="opacity-100"
+                      leave="ease-in duration-200"
+                      leaveFrom="opacity-100"
+                      leaveTo="opacity-0"
+                    >
+                      <div className="fixed inset-0 hidden shadow-lg shadow-indigo-800/40 bg-aurora-bgFundoModalEscuro bg-opacity-75 transition-opacity md:block" />
+                    </Transition.Child>
+
+                    <div className="fixed inset-0 z-10 overflow-y-auto">
+                      <div className="flex min-h-full items-stretch justify-center text-center md:items-center md:px-2 lg:px-4">
+                        <Transition.Child
+                          as={Fragment}
+                          enter="ease-out duration-300"
+                          enterFrom="opacity-0 translate-y-4 md:translate-y-0 md:scale-95"
+                          enterTo="opacity-100 translate-y-0 md:scale-100"
+                          leave="ease-in duration-200"
+                          leaveFrom="opacity-100 translate-y-0 md:scale-100"
+                          leaveTo="opacity-0 translate-y-4 md:translate-y-0 md:scale-95"
+                        >
+                          <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                      <div className="bg-white px-8 pb-9 pt-8 sm:p-6 sm:pb-4">
+                        <div className="sm:flex sm:items-start">
+                          <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-20 sm:w-20">
+                            <CheckCircleIcon className="h-16 w-16 text-green-600" aria-hidden="true" />
+                          </div>
+                          <div className="mt-3 text-center sm:ml-5 sm:mt-0 sm:text-left">
+                            <Dialog.Title as="h3" className="text-xl font-semibold leading-16 text-gray-900">
+                              Compra Finalizada Com Sucesso
+                            </Dialog.Title>
+                            <div className="mt-2">
+                              <p className="text-base text-gray-500">
+                              Seu pedido foi recebido e está sendo processado com cuidado. 
+                              Valorizamos sua confiança em nós e faremos o possível para garantir sua satisfação. 
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+              </Dialog.Panel>
+                        </Transition.Child>
+                      </div>
+                    </div>
+                  </Dialog>
+                </Transition.Root>
                           </div>
                           <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                             <p> ou <button type="button" className="font-medium text-gray-900 hover:text-indigo-900"

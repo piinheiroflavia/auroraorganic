@@ -30,12 +30,12 @@ const Cadastro = () => {
         await axios.post('http://localhost:9080/cadastro', data, headers)
         .then((response) => {
         setMessage(response.data.message);
-        localStorage.setItem('usuario', JSON.stringify(response.data.data)); 
-        setData({
-            nome_cliente : '',
-            email_cliente : '',
+        // localStorage.setItem('usuario', JSON.stringify(response.data.data)); 
+        // setData({
+        //     nome_cliente : '',
+        //     email_cliente : '',
 
-        });
+        // });
 
         })
         .catch((err) => {
@@ -51,13 +51,15 @@ const Cadastro = () => {
 //alert mensagem do banco
 const acionarEnviar = () => { 
 
-    //Armazene os dados no localStorage
-    localStorage.setItem('User', data.nome_cliente); 
-
+   
     let msgAlert = document.getElementById('msgBoxAlert');
     let titleCad = document.getElementById("titleCad");
     msgAlert.style.display = " block"; 
     titleCad.style.marginTop = "0px"
+    // Aguardar 1 segundos antes de atualizar a página
+    setTimeout(() => {
+        window.location.href = "http://localhost:5173/auroraorganic/login";
+    }, 2000);
 }
 const upLabelNome = () => {
     let labelNome = document.getElementById("labelNome");
@@ -130,8 +132,6 @@ const validaSenha = () => {
 let confSenha = document.getElementById("confSenha");
 const validaConfSenha = () => {
 
-
-
     if (confSenha.value === senha.value){
         confSenha.style.borderBottomColor = '#008000';
     }else {
@@ -179,7 +179,7 @@ const validaConfSenha = () => {
                 <div className="relative mb-6" data-te-input-wrapper-init>
                     <input 
                     type="email"
-                    className="peer block min-h-[auto] w-full rounded border-b-2 px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                    className="peer block min-h-[auto] w-full border-b-2 rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-gray-700 dark:placeholder:text-gray-700 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                     value={data.email_cliente} 
                     onChange={valorinput}  
                     onClick={upLabelEmail}
@@ -198,7 +198,7 @@ const validaConfSenha = () => {
                 <div className="relative mb-6" data-te-input-wrapper-init>
                     <input  
                     type="password" 
-                    className="peer block min-h-[auto] w-full rounded border-b-2 px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" 
+                    className="peer block min-h-[auto] w-full border-b-2 rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-gray-700 dark:placeholder:text-gray-700 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" 
                     maxLength={6}
                     id="senha_cliente" placeholder="senha" 
                     value={data.senha_cliente} 
@@ -206,13 +206,13 @@ const validaConfSenha = () => {
                     onClick={upLabelSenha}
                     onKeyUp={(event) => validaSenha(event.target.value)} />
                     <label 
-                    id="labelSenha" for="exampleInputPassword2" className="m-1 bg-aurora-branco pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary">Senha</label>
+                    id="labelSenha" for="exampleInputPassword2" className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary">Senha</label>
                 </div>
                 {/* comfirmar senha */}
                 <div className="relative mb-6" data-te-input-wrapper-init>
                     <input 
                     type="password" 
-                    className="peer block min-h-[auto] w-full rounded border-b-2 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" 
+                    className="peer block min-h-[auto] w-full border-b-2 rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-gray-700 dark:placeholder:text-gray-700 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" 
                     id="confSenha" 
                     maxLength={6}
                     placeholder=""

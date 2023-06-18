@@ -22,6 +22,7 @@ module.exports = {
           900: '#475569'
         },
         aurora:{
+          bgFundoModalEscuro: '#c6c2c2',
           bgFundoModal: '#fafafa1f',
           fontErroRosa: '#F0DCC4',
           fundoErro: '#1a1a1a',

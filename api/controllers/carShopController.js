@@ -72,17 +72,26 @@ router.post("/enviar-carrinho", async (req, res) => {
 // Remove o produto do carrinho
 router.delete("/remover-carrinho/:id", async (req, res) => {
   try {
-    const carrinhoId = req.params.id;
-    await CarShop.destroy({ where: { id: carrinhoId } });
+    const id = req.params.id;
+    const carrinho = await CarShop.findByPk(id);
+
+    if (!carrinho) {
+      console.log("Carrinho não encontrado");
+      return res.status(404).json({ error: "Carrinho não encontrado" });
+    }
+
+    const produtoId = carrinho.id_produto;
+
+    await CarShop.destroy({ where: { id: id } });
+
     console.log("Produto removido do carrinho com sucesso");
-    res
-      .status(200)
-      .json({ message: "Produto removido do carrinho com sucesso" });
+    res.status(200).json({ message: "Produto removido do carrinho com sucesso", produtoId });
+    
   } catch (error) {
     console.error("Erro ao remover o produto do carrinho:", error);
-    res
-      .status(500)
-      .json({ error: "Erro ao remover o produto do carrinho" });
+    res.status(500).json({ error: "Erro ao remover o produto do carrinho" });
   }
 });
+
+
 module.exports = router;

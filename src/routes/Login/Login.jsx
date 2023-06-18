@@ -19,49 +19,55 @@ const [data, setData]= useState({
 const [message,setMessage] = useState("");
 
 const sendmsg = async (e) => {
-    e.preventDefault();
-    const headers = {
-      'Content-Type': 'application/json'
-    };
-  
-    await axios.post('http://localhost:9080/login', data, headers)
-      .then((response) => {
-        setMessage(response.data.message);
-  
-        if (response.data.clienteEncontrado) {
-          // Salvar informações do usuário no localStorage
-          localStorage.setItem('User', JSON.stringify(response.data.email_cliente));
-  
-          // Chamar a rota de API para obter o valor da coluna nome
-          axios.get(`http://localhost:9080/obter-nome/${response.data.email_cliente}`)
-            .then((response) => {
-              const nome = response.data.nome;
-  
-              // Armazenar o nome no LocalStorage somente se estiver disponível
-              if (nome) {
-                localStorage.setItem('Nome', nome);
-              } else {
-                localStorage.removeItem('Nome');
-              }
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        } else {
-          localStorage.removeItem('User');
-          localStorage.removeItem('Nome');
-        }
-  
-        setData({
-          email_cliente: '',
-          senha_cliente: ''
-        });
-      })
-      .catch((err) => {
-        setMessage(err.response.data.message);
-      });
+  e.preventDefault();
+  const headers = {
+    'Content-Type': 'application/json'
   };
-  
+
+  await axios.post('http://localhost:9080/login', data, headers)
+    .then((response) => {
+      setMessage(response.data.message);
+
+      if (response.data.clienteEncontrado) {
+        // Chamar a rota de API para obter o valor da coluna nome
+        axios.get(`http://localhost:9080/obter-nome/${response.data.email_cliente}`)
+          .then((response) => {
+            const nome = response.data.nome;
+
+            // Armazenar o nome no LocalStorage somente se estiver disponível
+            if (nome) {
+              localStorage.setItem('Nome', nome);
+            } else {
+              localStorage.removeItem('Nome');
+            }
+
+            // Armazenar o email no LocalStorage
+            localStorage.setItem('User', response.data.email_cliente);
+
+            // Redirecionar para a outra página
+            window.location.href = "http://localhost:5173/auroraorganic";
+
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
+      } else {
+        localStorage.removeItem('User');
+        localStorage.removeItem('Nome');
+      }
+
+      setData({
+        email_cliente: '',
+        senha_cliente: ''
+      });
+
+    })
+    .catch((err) => {
+      setMessage(err.response.data.message);
+    });
+};
+
 const valorinput = e => {  
         setData({...data,[e.target.id]: e.target.value});   
 };
@@ -70,14 +76,16 @@ const valorinput = e => {
 //alert mensagem do banco
 const acionarEnviar = () => { 
 
-    //Armazene os dados no localStorage
-    localStorage.setItem('User', data.email_cliente);
-    
+    localStorage.setItem('User', data.email_cliente);    
     let msgAlert = document.getElementById('msgBoxAlert');
     let titleCad = document.getElementById("titleCad");
     msgAlert.style.display = " block"; 
+    msgAlert.style.backgroundColor = "#d8b4fe"
     titleCad.style.marginTop = "0px"
 
+  //   setTimeout(() => {
+  //     window.location.href = "http://localhost:5173/auroraorganic";
+  // }, 2000);
     
 }
 //valid label email
@@ -105,28 +113,26 @@ const validaEmail = (emaill) => {
 
     if (email.value === '') {
         email.style.borderBottomColor = '#CA1C2A';
-        console.log("não foi")
+
 
     } else if (!ev.test(emaill)) {
         email.style.borderBottomColor = '#CA1C2A';
-        console.log("não foi2")
+
 
     } else {
         email.style.borderBottomColor = '#008000';
-        console.log(" foi")
+
 
     }
 }
 const validaSenha = () => {
-    let senha = document.getElementById("senha_cliente1");
+    let senha = document.getElementById("senha_cliente");
 
     if (senha.value === '') {
         senha.style.borderBottomColor = '#CA1C2A';
-        console.log("não foi")
+
     } else {
         senha.style.borderBottomColor = '#008000';
-        console.log(" foi")
-
     }
 }
 
@@ -167,8 +173,15 @@ const validaSenha = () => {
     
                 <div className="relative mb-6" data-te-input-wrapper-init>
                     <input type="password" className="peer block min-h-[auto] w-full rounded border-b-2 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                         value={data.senha_cliente} onChange={valorinput}  id="senha_cliente" placeholder="Password" />
-                    <label for="exampleInputPassword2" className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                         value={data.senha_cliente} 
+                         onClick={upLabelSenha}
+                         onChange={valorinput}  
+                         onKeyUp={(event) => validaSenha(event.target.value)}
+                         id="senha_cliente" 
+                         placeholder="Password" />
+                    
+                    <label for="exampleInputPassword2" 
+                    className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
                     >Senha</label> 
                 </div>
 
