@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Carrinho from '../components/Carrinho/Carrinho';
-
+import { baseUrl } from '../configReq'; 
 export default function Contact() {
   const [produtos, setProdutos] = useState([]);
   const [carrinho, setCarrinho] = useState([]);
@@ -10,7 +10,7 @@ export default function Contact() {
   useEffect(() => {
     const fetchProdutos = async () => {
       try {
-        const response = await fetch('http://localhost:9080/produtos');
+        const response = await fetch(`${baseUrl}/produtos`);
         const data = await response.json();
         const produtosSkin = data.filter((produto) => produto.categoria === 'skin');
         setProdutos(produtosSkin);
@@ -25,7 +25,7 @@ export default function Contact() {
   useEffect(() => {
     const fetchCarrinho = async () => {
       try {
-        const response = await fetch('http://localhost:9080/carrinho');
+        const response = await fetch(`${baseUrl}/carrinho`);
         const data = await response.json();
         setCarrinho(data);
 
@@ -48,7 +48,7 @@ export default function Contact() {
         quantidade: 1,
       };
 
-      const response = await fetch('http://localhost:9080/carrinho/enviar-carrinho', {
+      const response = await fetch(`${baseUrl}/carrinho/enviar-carrinho`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ export default function Contact() {
         console.log('Produto adicionado com sucesso');
 
         // Atualizar a lista de produtos no carrinho após a adição
-        const carrinhoResponse = await fetch('http://localhost:9080/carrinho');
+        const carrinhoResponse = await fetch(`${baseUrl}/carrinho`);
         const carrinhoData = await carrinhoResponse.json();
         setCarrinho(carrinhoData);
 
@@ -83,7 +83,7 @@ export default function Contact() {
 
   const removerProduto = async (productId) => {
     try {
-      const response = await fetch(`http://localhost:9080/carrinho/remover-carrinho/${productId}`, {
+      const response = await fetch(`${baseUrl}/carrinho/remover-carrinho/${productId}`, {
         method: 'DELETE',
       });
   
@@ -92,7 +92,7 @@ export default function Contact() {
         console.log("ID do carrinho a ser removido:", req.params.id);
 
         // Atualizar a lista de produtos no carrinho após a remoção
-        const carrinhoResponse = await fetch('http://localhost:9080/carrinho');
+        const carrinhoResponse = await fetch(`${baseUrl}/carrinho`);
         const carrinhoData = await carrinhoResponse.json();
         setCarrinho(carrinhoData);
   

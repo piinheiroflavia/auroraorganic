@@ -7,6 +7,7 @@ import { Fragment, useState, useEffect } from 'react';
 import { Dialog, Transition } from '@headlessui/react'
 import axios from 'axios';
 import { CheckCircleIcon } from '@heroicons/react/24/outline'
+import { baseUrl } from '../../../src/configReq'; 
 
 
 const Carrinho = () => {
@@ -19,7 +20,7 @@ const Carrinho = () => {
   useEffect(() => {
     const fetchProdutosNoCarrinho = async () => {
       try {
-        const response = await axios.get('http://localhost:9080/carrinho');
+        const response = await axios.get(`${baseUrl}/carrinho`);
         const data = response.data;
         console.log('Dados do carrinho:', data);
         setCarShop(data);
@@ -47,7 +48,7 @@ const Carrinho = () => {
 
   const removerProduto = async (id_produto) => {
     try {
-      const response = await axios.delete(`http://localhost:9080/carrinho/remover-carrinho/${id_produto}`);
+      const response = await axios.delete(`${baseUrl}/carrinho/remover-carrinho/${id_produto}`);
   
       if (response.status === 200) {
         console.log('Produto removido com sucesso');
@@ -157,7 +158,7 @@ const Carrinho = () => {
                                       </div>
                                       <div className="flex flex-1 items-end justify-between text-sm">
                                         <p className="text-gray-500">Valor: R${produto.produto.novoPreco},00</p>
-
+                                  
                                         <div className="flex">
                                           <button
                                             className="font-medium text-gray-900 hover:text-indigo-900"

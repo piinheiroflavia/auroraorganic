@@ -1,6 +1,8 @@
 const express = require ("express");
 const db = require ("../db/models");
 const router = express.Router();
+import { baseUrlLogin } from '../../src/configReq'; 
+
 
 router.post("/", async (req, res) => {
     var data = req.body;
@@ -9,7 +11,8 @@ router.post("/", async (req, res) => {
         return res.json({
             error: false,
             message: "Cadastrado com sucesso!",
-            data: datamessage   
+            data: datamessage,
+            redirectUrl: `${baseUrlLogin}/auroraorganic/login`
         });
     }).catch((error) => {
         return res.json({

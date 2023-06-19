@@ -4,6 +4,7 @@ import { Dialog, RadioGroup, Transition } from '@headlessui/react'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { Fragment, useState, useEffect  } from 'react'
 import { Rating } from "@material-tailwind/react";
+import { baseUrl } from '../../configReq'; 
 
 
 function classNames(...classes) {
@@ -31,7 +32,7 @@ export default function Example() {
     useEffect(() => {
       const fetchProdutos = async () => {
         try {
-          const response = await fetch('http://localhost:9080/produtos');
+          const response = await fetch(`${baseUrl}/produtos`);
           const data = await response.json();
           const produtosSkin = data.filter((produto) => produto.categoria === 'skin');
           setProdutos(produtosSkin);
@@ -52,7 +53,7 @@ export default function Example() {
         quantidade: 1,
       };
   
-      const response = await fetch('http://localhost:9080/carrinho/enviar-carrinho', {
+      const response = await fetch(`${baseUrl}/carrinho/enviar-carrinho`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -64,7 +65,7 @@ export default function Example() {
         // alert('Produto adicionado com sucesso');
   
         // Atualizar a lista de produtos no carrinho após a adição
-        const carrinhoResponse = await fetch('http://localhost:9080/carrinho');
+        const carrinhoResponse = await fetch(`${baseUrl}/carrinho`);
         const carrinhoData = await carrinhoResponse.json();
         setCarrinho(carrinhoData);
   

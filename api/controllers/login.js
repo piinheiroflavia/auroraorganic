@@ -1,6 +1,7 @@
 const express = require("express");
 const db = require("../db/models");
 const router = express.Router();
+import { baseUrl, baseUrlLogin } from '../../src/configReq'; 
 
 router.post("/", async (req, res) => {
   const {  email_cliente, senha_cliente } = req.body;
@@ -23,15 +24,15 @@ router.post("/", async (req, res) => {
         message: "Senha Incorreta.",
       });
     }
-
-
     // Se a autenticação for bem-sucedida, você pode retornar uma resposta com sucesso
     return res.json({
       error: false,
       message: "Usuário Logado, seja bem vindo!"  ,
       data: usuario,
-      redirectUrl: "http://localhost:5173/auroraorganic"
+      redirectUrl: `${baseUrlLogin}/auroraorganic`
+
     });
+
   } catch (error) {
     return res.json({
       error: true,

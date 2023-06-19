@@ -9,28 +9,35 @@ const Produto = db.produtos;
 
 
   
-// Retorna a lista de produtos no carrinho
 router.get("/", async (req, res) => {
   try {
     const produtosCarrinho = await CarShop.findAll({
-      include: [{ model: Produto, as: "produto" }], // Inclui o modelo Produto na consulta
+      include: [{ model: Produto, as: "produto" }],
     });
 
-    const listaProdutos = produtosCarrinho.map((item) => ({
-      id_carrinho: item.id_carrinho,
-      id_produto: item.id_produto,
-      quantidade: item.quantidade,
-      valor_total: item.valor_total,
-      produto: {
-        id_produto: item.produto.id_produto,
-        name_produto: item.produto.name_produto,
-        Preco: item.produto.Preco,
-        novoPreco: item.produto.novoPreco,
-        imageSrc: item.produto.imageSrc,
-        imageAlt: item.produto.imageAlt,
-        categoria: item.produto.categoria,
-      },
-    }));
+    const produtosQuantidade = {};
+
+    produtosCarrinho.forEach((item) => {
+      const produtoId = item.produto.id_produto;
+      if (produtosQuantidade[produtoId]) {
+        produtosQuantidade[produtoId].quantidade += item.quantidade;
+      } else {
+        produtosQuantidade[produtoId] = {
+          quantidade: item.quantidade,
+          produto: {
+            id_produto: item.produto.id_produto,
+            name_produto: item.produto.name_produto,
+            Preco: item.produto.Preco,
+            novoPreco: item.produto.novoPreco,
+            imageSrc: item.produto.imageSrc,
+            imageAlt: item.produto.imageAlt,
+            categoria: item.produto.categoria,
+          },
+        };
+      }
+    });
+
+    const listaProdutos = Object.values(produtosQuantidade);
 
     res.status(200).json(listaProdutos);
   } catch (error) {
@@ -38,6 +45,7 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: "Erro ao obter a lista de produtos do carrinho" });
   }
 });
+
 
 // Adiciona o produto ao carrinho
 router.post("/enviar-carrinho", async (req, res) => {

@@ -3,6 +3,7 @@ import Header from "../../components/Header/Header";
 import React, { useState } from 'react';
 import { Alert } from "@material-tailwind/react";
 import axios from "axios";
+import { baseUrl } from '../../configReq'; 
 
 // Initialization for ES Users
 import {Ripple,Input,initTE,} from "tw-elements";
@@ -24,13 +25,13 @@ const sendmsg = async (e) => {
     'Content-Type': 'application/json'
   };
 
-  await axios.post('http://localhost:9080/login', data, headers)
+  await axios.post(`${baseUrl}/login`, data, headers)
     .then((response) => {
       setMessage(response.data.message);
 
       if (response.data.clienteEncontrado) {
         // Chamar a rota de API para obter o valor da coluna nome
-        axios.get(`http://localhost:9080/obter-nome/${response.data.email_cliente}`)
+        axios.get(`${baseUrl}/obter-nome/${response.data.email_cliente}`)
           .then((response) => {
             const nome = response.data.nome;
 
@@ -45,7 +46,7 @@ const sendmsg = async (e) => {
             localStorage.setItem('User', response.data.email_cliente);
 
             // Redirecionar para a outra página
-            window.location.href = "http://localhost:5173/auroraorganic";
+            window.location.href = `${baseUrl}/auroraorganic`;
 
           })
           .catch((err) => {

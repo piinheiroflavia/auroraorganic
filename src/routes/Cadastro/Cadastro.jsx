@@ -3,6 +3,7 @@ import { Alert } from "@material-tailwind/react";
 import Headers from "../../components/Header/Header";
 import React, { useState } from 'react';
 import axios from "axios";
+import { baseUrl, baseUrlLogin } from '../../configReq'; 
 
 
 const Cadastro = () => {
@@ -27,7 +28,7 @@ const Cadastro = () => {
             }
         };
 
-        await axios.post('http://localhost:9080/cadastro', data, headers)
+        await axios.post(`${baseUrl}/cadastro`, data, headers)
         .then((response) => {
         setMessage(response.data.message);
         // localStorage.setItem('usuario', JSON.stringify(response.data.data)); 
@@ -58,7 +59,7 @@ const acionarEnviar = () => {
     titleCad.style.marginTop = "0px"
     // Aguardar 1 segundos antes de atualizar a página
     setTimeout(() => {
-        window.location.href = "http://localhost:5173/auroraorganic/login";
+        window.location.href = `${baseUrlLogin}/auroraorganic/login`;
     }, 2000);
 }
 const upLabelNome = () => {
@@ -138,8 +139,6 @@ const validaConfSenha = () => {
         confSenha.style.borderBottomColor = '#CA1C2A';
     }
 }
-
-
 
     return(
         <div>
